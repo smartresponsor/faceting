@@ -1,1 +1,3 @@
-# Faceting routes placeholder for M0.
+faceting_management_index:
+  path: /faceting/management/facets
+  controller: App\Controller\Management\FacetManagementController

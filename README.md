@@ -10,3 +10,14 @@ Core invariant:
 - `src/Service/...` for implementations
 - `src/ServiceInterface/...` for interfaces
 - `faceting_` config prefix under `config/`
+
+Current vertical slice:
+
+- management route
+- management controller
+- Symfony form
+- validator mapping
+- Twig + Bootstrap UI
+- mirrored service interface
+- ValueObject normalization
+- unit coverage for core normalization

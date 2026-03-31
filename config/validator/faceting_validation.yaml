@@ -1,0 +1,19 @@
+App\Dto\Facet\FacetUpsertRequest:
+  properties:
+    code:
+      - NotBlank: ~
+      - Length:
+          max: 64
+      - Regex:
+          pattern: '/^[A-Za-z0-9_-]+$/'
+    name:
+      - NotBlank: ~
+      - Length:
+          max: 255
+    type:
+      - Choice:
+          choices:
+            - term
+            - range
+            - boolean
+            - hierarchy

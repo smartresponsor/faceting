@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faceting management{% endblock %}
+
+{% block body %}
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="h3 mb-3">Faceting management</h1>
+                    <p class="text-secondary">Current demo facet surface for the component.</p>
+                    <table class="table table-striped align-middle mb-0">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Visible</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for facet in facets %}
+                            <tr>
+                                <td>{{ facet.code }}</td>
+                                <td>{{ facet.name }}</td>
+                                <td>{{ facet.type }}</td>
+                                <td>{{ facet.visible ? 'yes' : 'no' }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">Facet preview form</h2>
+                    {{ form_start(facetForm) }}
+                        {{ form_row(facetForm.code) }}
+                        {{ form_row(facetForm.name) }}
+                        {{ form_row(facetForm.type) }}
+                        {{ form_row(facetForm.visible) }}
+                        {{ form_row(facetForm.submit) }}
+                    {{ form_end(facetForm) }}
+                </div>
+            </div>
+            {% if materializedFacet is not null %}
+                <div class="card border-success shadow-sm">
+                    <div class="card-body">
+                        <h2 class="h5 text-success mb-3">Materialized facet</h2>
+                        <dl class="row mb-0">
+                            <dt class="col-sm-4">Code</dt>
+                            <dd class="col-sm-8" data-testid="facet-preview-code">{{ materializedFacet.code }}</dd>
+                            <dt class="col-sm-4">Name</dt>
+                            <dd class="col-sm-8">{{ materializedFacet.name }}</dd>
+                            <dt class="col-sm-4">Type</dt>
+                            <dd class="col-sm-8">{{ materializedFacet.type }}</dd>
+                            <dt class="col-sm-4">Visible</dt>
+                            <dd class="col-sm-8">{{ materializedFacet.visible ? 'yes' : 'no' }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
