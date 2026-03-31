@@ -4,57 +4,8 @@ manifest:
   status: active
 
 execution_waves:
-  - wave: 1
-    title: namespace and tree normalization
-    goals:
-      - collapse code to App under src only
-      - remove Domain and component named wrapper directories
-      - align namespace, path and autoload symmetry
-  - wave: 2
-    title: service and interface mirroring
-    goals:
-      - move interfaces from src/Service to src/ServiceInterface
-      - rename component local services to Faceting plus Service pattern
-      - rewrite all consumer references
-  - wave: 3
-    title: configuration and container alignment
-    goals:
-      - rename config files to faceting prefixed names
-      - normalize services, routes and package configuration
-      - align container defaults
-  - wave: 4
-    title: dto value object validator hardening
-    goals:
-      - introduce DTOs for write and orchestration flows
-      - introduce ValueObjects for meaningful values
-      - align Symfony Validator usage across layers
-  - wave: 5
-    title: management ui and demo flows
-    goals:
-      - add Twig plus Bootstrap management pages
-      - align Symfony Forms with DTOs and validators
-      - provide useful demo scenarios
-  - wave: 6
-    title: fixtures and cli breadth
-    goals:
-      - implement Doctrine Fixtures plus Faker demo flow
-      - add diagnostics, cleanup, reindex, reset and report commands
-      - ensure local and Docker usability
-  - wave: 7
-    title: testing and browser automation
-    goals:
-      - fill unit, integration and functional gaps
-      - add Panther coverage where Symfony browser flow matters
-      - add Playwright Chromium coverage where browser depth is needed
-  - wave: 8
-    title: pipeline and refinement
-    goals:
-      - align daily local quality gate
-      - wire audit and static checks
-      - use logs and reports as the source of concrete fixes
-      - review routing, repository boundaries and doctrine coupling
-
-merge_policy:
-  preserve_best_working_code_on_conflict: true
-  avoid_format_churn: true
-  prefer_architecture_first_changes: true
+  - namespace and tree normalization
+  - service and interface mirroring
+  - configuration and container alignment
+  - dto, validator and value object hardening
+  - test and browser automation breadth

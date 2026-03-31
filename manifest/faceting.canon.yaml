@@ -1,15 +1,13 @@
 manifest:
   id: faceting.canon
-  version: 1
+  version: 2
   status: active
   normative_strength: mandatory
-  component: faceting
 
 component_identity:
   repository_name: faceting
   canonical_code_root_namespace: App
   canonical_code_root_path: src/
-  symfony_application_namespace_only: true
   forbidden_root_namespaces:
     - Smartresponsor
     - Faceting
@@ -18,119 +16,13 @@ structure_rules:
   forbidden_directories:
     - /Domain
     - src/Domain
-  forbidden_component_named_directories:
-    applies_at:
-      - repository_root
-      - direct_child_of_src
-      - third_level_under_src
-  allowed_symfony_oriented_layers:
-    - src/Command
-    - src/Controller
-    - src/Dto
-    - src/Entity
-    - src/Enum
-    - src/Event
-    - src/EventSubscriber
-    - src/Form
-    - src/Message
-    - src/MessageHandler
-    - src/Repository
-    - src/Security
-    - src/Service
-    - src/ServiceInterface
-    - src/ValueObject
 
-namespace_alignment:
-  all_php_files_must_resolve_under: App
-  file_path_namespace_symmetry_required: true
-  consumer_references_must_be_rewritten_after_moves: true
-
-service_layer_rules:
+service_rules:
   implementation_root: src/Service
   interface_root: src/ServiceInterface
-  interfaces_inside_src_service_forbidden: true
-  mirrored_paths_required: true
-  service_naming:
-    component_local_service_prefix_required: Faceting
-    service_suffix_required: Service
-    reusable_shared_services_may_keep_free_names_only_if_truly_cross_component: true
+  interfaces_inside_service_tree_forbidden: true
+  component_local_service_prefix: Faceting
+  service_suffix: Service
 
 configuration_rules:
-  config_root: config/
-  component_prefix_required: faceting_
-  symfony_di_best_practices_required: true
-  container_expectations:
-    autowiring: required
-    autoconfiguration: required
-    aliases: explicit_and_justified
-    binds: minimal_and_clear
-    visibility: private_by_default
-
-environment_rules:
-  env_files_must_be_clear_and_symfony_oriented: true
-  test_env_must_be_clear_and_symfony_oriented: true
-  docker_env_must_be_clear_and_symfony_oriented: true
-
-application_architecture:
-  dto_usage_required_for:
-    - form_flow_when_entities_would_otherwise_leak
-    - cli_flow_when_commands_cross_application_boundaries
-    - http_write_flow
-    - application_orchestration_flow
-  value_object_usage_expected_for:
-    - statuses
-    - codes
-    - keys
-    - names_with_invariants
-    - meaningful_strings
-  validator_must_be_symfony_validator: true
-
-ui_rules:
-  bootstrap_required: true
-  twig_management_ui_required: true
-  forms_must_live_within_existing_controllers_and_endpoints: true
-
-fixtures_rules:
-  doctrine_fixtures_required: true
-  faker_required: true
-  dql_forbidden: true
-
-cli_rules:
-  broad_console_surface_required: true
-
-security_rules:
-  symfony_security_best_practices_required: true
-
-testing_rules:
-  layers:
-    - unit
-    - integration
-    - functional
-    - panther
-    - playwright
-  local_postgres_and_docker_test_support_required: true
-  symfony_server_runtime_must_be_stable: true
-
-pipeline_rules:
-  local_pipeline_must_be_daily_quality_gate: true
-  checks_expected:
-    - php_lint
-    - yaml_lint
-    - container_lint
-    - twig_lint
-    - cs_check
-    - cs_fix
-    - composer_audit
-    - importmap_audit
-    - gitleaks
-    - semgrep_community_edition
-    - symfony_security_tests
-
-repository_rules:
-  repositories_must_only_select_and_persist_data: true
-  business_logic_in_repositories_forbidden: true
-  orchestration_in_repositories_forbidden: true
-
-refactoring_principle:
-  prefer_meaningful_architectural_improvement_over_format_churn: true
-  preserve_best_working_code_when_conflicts_exist: true
+  config_prefix: faceting_

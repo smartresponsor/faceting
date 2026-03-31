@@ -1,3 +1,6 @@
-.phpunit.cache/
-node_modules/
-var/cache/
+/vendor/
+/var/
+/node_modules/
+/.phpunit.cache/
+.env.local
+.env.test.local
