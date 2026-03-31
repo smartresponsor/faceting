@@ -1,0 +1,57 @@
+manifest:
+  id: faceting.acceptance_gates
+  version: 1
+  status: active
+
+acceptance_gates:
+  namespace_and_tree:
+    - only App namespace is used under src
+    - no alternate code root exists
+    - no Domain directory exists
+    - no repository or component wrapper directory exists near the root of the code tree
+    - file paths and namespaces are symmetric
+  services:
+    - no service interface exists under src/Service
+    - all service interfaces are mirrored under src/ServiceInterface
+    - component local services use Faceting prefix and Service suffix
+    - all consumer references are updated after moves and renames
+  configuration:
+    - config files use faceting prefix as first token
+    - services, routes and package config follow Symfony layout
+    - container wiring is autowired, autoconfigured and private by default
+  flows:
+    - DTOs protect write oriented HTTP, CLI and form flows
+    - ValueObjects protect meaningful values where justified
+    - Validator is applied at the correct layer
+    - Twig and Bootstrap management UI exists for current scenarios
+  data_and_demo:
+    - fixtures use Doctrine Fixtures and Faker
+    - fixtures reflect real component scenarios
+    - fixture load works locally and in Docker
+    - no DQL is introduced
+  cli:
+    - diagnostics command exists
+    - fixtures load command exists
+    - cleanup command exists
+    - reindex command exists
+    - demo reset command exists
+    - report command exists
+  tests:
+    - unit coverage exists for core business logic
+    - integration coverage exists for services and persistence seams
+    - functional coverage exists for HTTP scenarios
+    - Panther covers real Symfony browser flows where valuable
+    - Playwright Chromium covers flows not better covered by Panther
+    - test flow works with local Postgres and Docker runtime
+  runtime_and_browser_automation:
+    - symfony local server starts reliably
+    - routes are predictable for automation
+    - demo fixtures are stable for automation
+    - Chrome MCP and Playwright Chromium do not conflict
+  pipeline_and_security:
+    - local pipeline is useful as a daily gate
+    - php lint, yaml lint, container lint and twig lint are present
+    - cs check and cs fix are present and aligned
+    - composer audit, importmap audit, gitleaks, semgrep and Symfony security tests are included
+    - logs and reports are actionable and drive concrete fixes
+    - security configuration, access rules, voters and tests are aligned
