@@ -1,0 +1,61 @@
+manifest:
+  id: faceting.non_normative.examples
+  version: 1
+  status: active
+
+allowed_examples:
+  paths:
+    - src/Controller/Admin/FacetController.php
+    - src/Service/Projection/FacetingProjectionService.php
+    - src/ServiceInterface/Projection/FacetingProjectionServiceInterface.php
+    - src/Dto/Facet/FacetUpsertRequest.php
+    - src/ValueObject/Facet/FacetCode.php
+    - config/packages/faceting_framework.yaml
+    - config/services/faceting_services.yaml
+    - config/routes/faceting_routes.yaml
+  names:
+    - FacetingProjectionService
+    - FacetingFacetUpsertService
+    - FacetingCleanupService
+    - FacetingDiagnosticsService
+    - FacetingFacetCode
+    - FacetingFacetStatus
+
+forbidden_examples:
+  paths:
+    - src/Domain/Facet/FacetManager.php
+    - src/Faceting/Service/FacetService.php
+    - src/Catalog/Service/FacetService.php
+    - src/Service/Projection/FacetingProjectionServiceInterface.php
+    - config/packages/framework.yaml
+    - config/services/facet.yaml
+    - config/routes/facet.yaml
+  names:
+    - FacetManager
+    - FacetHelper
+    - ProjectionInterfaceInsideServiceTree
+    - SmartresponsorRootNamespace
+    - AlternateComponentRootNamespace
+
+migration_examples:
+  move_interface_example:
+    source_path: src/Service/Projection/FacetingProjectionServiceInterface.php
+    target_path: src/ServiceInterface/Projection/FacetingProjectionServiceInterface.php
+  rename_service_example:
+    source_name: ProjectionBuilder
+    target_name: FacetingProjectionBuilderService
+  rename_config_example:
+    source_name: config/services/facet.yaml
+    target_name: config/services/faceting_services.yaml
+
+flow_examples:
+  http_write_flow:
+    dto: FacetUpsertRequest
+    validator: SymfonyValidator
+    service: FacetingFacetUpsertService
+  form_flow:
+    form_type: FacetType
+    dto: FacetUpsertRequest
+  cli_flow:
+    command: app:faceting:reindex
+    dto: ReindexRequest
