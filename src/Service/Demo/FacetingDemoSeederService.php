@@ -6,15 +6,17 @@ namespace App\Service\Demo;
 
 use App\Entity\Facet;
 use App\Repository\FacetRepository;
+use App\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
+use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
 use App\ValueObject\Facet\FacetCode;
 use App\ValueObject\Facet\FacetName;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class FacetingDemoSeederService
+final class FacetingDemoSeederService implements FacetingDemoSeederServiceInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly FacetingDemoDatasetService $facetingDemoDatasetService,
+        private readonly FacetingDemoDatasetServiceInterface $facetingDemoDatasetService,
         private readonly FacetRepository $facetRepository,
     ) {
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\Demo\FacetingDemoSeederService;
+use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class FacetingFixturesLoadCommand extends Command
 {
     public function __construct(
-        private readonly FacetingDemoSeederService $facetingDemoSeederService,
+        private readonly FacetingDemoSeederServiceInterface $facetingDemoSeederService,
     ) {
         parent::__construct();
     }

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Service;
 
 use App\Dto\Facet\FacetUpsertRequest;
+use App\Repository\FacetRepository;
 use App\Service\Facet\FacetingFacetService;
+use App\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
 use PHPUnit\Framework\TestCase;
 
 final class FacetingFacetServiceTest extends TestCase
@@ -18,7 +20,25 @@ final class FacetingFacetServiceTest extends TestCase
         $request->type = 'term';
         $request->visible = true;
 
-        $result = (new FacetingFacetService())->materialize($request);
+        $repository = new class () extends FacetRepository {
+            public function __construct()
+            {
+            }
+
+            public function findOrderedVisibleFacets(): array
+            {
+                return [];
+            }
+        };
+
+        $datasetService = new class () implements FacetingDemoDatasetServiceInterface {
+            public function buildDataset(): array
+            {
+                return [];
+            }
+        };
+
+        $result = (new FacetingFacetService($repository, $datasetService))->materialize($request);
 
         self::assertSame('material-code', $result['code']);
         self::assertSame('Material', $result['name']);
