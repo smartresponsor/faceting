@@ -14,3 +14,5 @@ services:
 
   App\\ServiceInterface\\Facet\\FacetingFacetServiceInterface: '@App\\Service\\Facet\\FacetingFacetService'
   App\\ServiceInterface\\Report\\FacetingReportServiceInterface: '@App\\Service\\Report\\FacetingReportService'
+  App\\ServiceInterface\\Demo\\FacetingDemoDatasetServiceInterface: '@App\\Service\\Demo\\FacetingDemoDatasetService'
+  App\\ServiceInterface\\Demo\\FacetingDemoSeederServiceInterface: '@App\\Service\\Demo\\FacetingDemoSeederService'
