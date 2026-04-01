@@ -6,8 +6,10 @@ Current command surface:
 
 - `app:faceting:diagnostics`
 - `app:faceting:report`
-- reserved next commands:
-  - `app:faceting:fixtures:load`
-  - `app:faceting:cleanup`
-  - `app:faceting:reindex`
-  - `app:faceting:demo:reset`
+- `app:faceting:fixtures:load`
+- `app:faceting:cleanup`
+- `app:faceting:demo:reset`
+
+Reserved next commands:
+
+- `app:faceting:reindex`

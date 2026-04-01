@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\Demo\FacetingDemoSeederService;
+use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface as DemoSeeder;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class FacetingCleanupCommand extends Command
 {
     public function __construct(
-        private readonly FacetingDemoSeederService $facetingDemoSeederService,
+        private readonly DemoSeeder $facetingDemoSeederService,
     ) {
         parent::__construct();
     }
@@ -25,7 +25,7 @@ final class FacetingCleanupCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $count = $this->facetingDemoSeederService->clearAll();
 
-        $io->success(sprintf('Removed %d facet rows.', $count));
+        $io->success((string) $count.' facet rows were removed.');
 
         return Command::SUCCESS;
     }

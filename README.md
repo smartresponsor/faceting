@@ -21,6 +21,6 @@ Current vertical slice:
 - mirrored service interfaces
 - ValueObject normalization
 - Doctrine persistence foundation
-- Doctrine fixture foundation
-- CLI report surface
-- unit coverage for normalization and reporting
+- Doctrine fixture foundation with dataset-service reuse
+- CLI report, fixtures load, cleanup and demo reset surfaces
+- unit coverage for normalization, dataset and reporting
