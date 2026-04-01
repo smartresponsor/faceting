@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Service\Facet;
 
 use App\Dto\Facet\FacetUpsertRequest;
+use App\Enum\FacetType;
 use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
 use App\ValueObject\Facet\FacetCode;
+use App\ValueObject\Facet\FacetName;
 
 final class FacetingFacetService implements FacetingFacetServiceInterface
 {
@@ -22,11 +24,13 @@ final class FacetingFacetService implements FacetingFacetServiceInterface
     public function materialize(FacetUpsertRequest $request): array
     {
         $code = new FacetCode($request->code);
+        $name = new FacetName($request->name);
+        $type = FacetType::from($request->type);
 
         return [
             'code' => $code->toString(),
-            'name' => trim($request->name),
-            'type' => $request->type,
+            'name' => $name->toString(),
+            'type' => $type->value,
             'visible' => $request->visible,
         ];
     }

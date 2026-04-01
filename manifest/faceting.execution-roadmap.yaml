@@ -8,4 +8,5 @@ execution_waves:
   - service and interface mirroring
   - configuration and container alignment
   - dto, validator and value object hardening
+  - persistence and fixtures foundation
   - test and browser automation breadth

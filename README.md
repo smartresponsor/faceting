@@ -18,6 +18,9 @@ Current vertical slice:
 - Symfony form
 - validator mapping
 - Twig + Bootstrap UI
-- mirrored service interface
+- mirrored service interfaces
 - ValueObject normalization
-- unit coverage for core normalization
+- Doctrine persistence foundation
+- Doctrine fixture foundation
+- CLI report surface
+- unit coverage for normalization and reporting

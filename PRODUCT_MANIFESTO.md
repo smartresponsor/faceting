@@ -9,4 +9,5 @@ Current responsibility:
 - selection mode semantics
 - management UI for facet administration
 - CLI administration surfaces
+- report surfaces
 - demo and diagnostics surfaces

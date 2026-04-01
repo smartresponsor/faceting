@@ -7,5 +7,10 @@ services:
     resource: '../../src/'
     exclude:
       - '../../src/Kernel.php'
+      - '../../src/Entity/'
+      - '../../src/Enum/'
+      - '../../src/ValueObject/'
+      - '../../src/ServiceInterface/'
 
   App\\ServiceInterface\\Facet\\FacetingFacetServiceInterface: '@App\\Service\\Facet\\FacetingFacetService'
+  App\\ServiceInterface\\Report\\FacetingReportServiceInterface: '@App\\Service\\Report\\FacetingReportService'

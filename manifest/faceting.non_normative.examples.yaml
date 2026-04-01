@@ -6,7 +6,9 @@ manifest:
 allowed_examples:
   paths:
     - src/Service/Facet/FacetingFacetService.php
+    - src/Service/Report/FacetingReportService.php
     - src/ServiceInterface/Facet/FacetingFacetServiceInterface.php
+    - src/ServiceInterface/Report/FacetingReportServiceInterface.php
     - src/ValueObject/Facet/FacetCode.php
     - config/services/faceting_services.yaml
 

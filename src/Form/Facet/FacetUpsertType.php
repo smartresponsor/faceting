@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class FacetUpsertType extends AbstractType
 {
@@ -29,5 +30,12 @@ final class FacetUpsertType extends AbstractType
             ])
             ->add('visible', CheckboxType::class, ['required' => false])
             ->add('submit', SubmitType::class, ['label' => 'Preview facet']);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => FacetUpsertRequest::class,
+        ]);
     }
 }
