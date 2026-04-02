@@ -17,3 +17,4 @@ services:
   App\\ServiceInterface\\Demo\\FacetingDemoDatasetServiceInterface: '@App\\Service\\Demo\\FacetingDemoDatasetService'
   App\\ServiceInterface\\Demo\\FacetingDemoSeederServiceInterface: '@App\\Service\\Demo\\FacetingDemoSeederService'
   App\\ServiceInterface\\Listing\\FacetingEngineServiceInterface: '@App\\Service\\Listing\\FacetingEngineService'
+  App\\ServiceInterface\\Listing\\FacetingListingCriteriaBuilderServiceInterface: '@App\\Service\\Listing\\FacetingListingCriteriaBuilderService'

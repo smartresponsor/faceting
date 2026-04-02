@@ -1,3 +1,7 @@
 faceting_management_index:
   path: /faceting/management/facets
   controller: App\Controller\Management\FacetManagementController
+
+faceting_api_listing:
+  path: /faceting/api/listing
+  controller: App\Controller\Api\FacetingListingApiController
