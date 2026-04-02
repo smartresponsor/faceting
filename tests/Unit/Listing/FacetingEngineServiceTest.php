@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Listing;
 
+use App\Dto\Facet\FacetUpsertRequest;
 use App\Dto\Listing\FacetingListingCriteria;
 use App\Service\Listing\FacetingEngineService;
 use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
@@ -23,7 +24,7 @@ final class FacetingEngineServiceTest extends TestCase
                 ];
             }
 
-            public function materialize($request): array
+            public function materialize(FacetUpsertRequest $request): array
             {
                 return [];
             }
