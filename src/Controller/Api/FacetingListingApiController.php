@@ -26,6 +26,22 @@ final class FacetingListingApiController extends AbstractController
         return $this->json([
             'total' => $result->total,
             'items' => $result->items,
+            'aggregations' => [
+                'types' => array_map(
+                    static fn ($bucket) => [
+                        'key' => $bucket->key,
+                        'count' => $bucket->count,
+                    ],
+                    $result->aggregations->types,
+                ),
+                'visibility' => array_map(
+                    static fn ($bucket) => [
+                        'key' => $bucket->key,
+                        'count' => $bucket->count,
+                    ],
+                    $result->aggregations->visibility,
+                ),
+            ],
         ]);
     }
 }

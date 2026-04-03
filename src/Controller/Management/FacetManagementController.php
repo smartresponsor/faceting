@@ -24,18 +24,10 @@ final class FacetManagementController extends AbstractController
 
     public function __invoke(Request $request): Response
     {
-        $facetUpsertRequest = new FacetUpsertRequest();
-        $facetUpsertRequest->code = 'brand';
-        $facetUpsertRequest->name = 'Brand';
-        $facetUpsertRequest->type = 'term';
-        $facetUpsertRequest->visible = true;
-
-        $form = $this->createForm(FacetUpsertType::class, $facetUpsertRequest, [
-            'method' => 'POST',
-        ]);
-        $form->handleRequest($request);
-
         $materializedFacet = null;
+        $facetUpsertRequest = new FacetUpsertRequest();
+        $form = $this->createForm(FacetUpsertType::class, $facetUpsertRequest);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $materializedFacet = $this->facetingFacetService->materialize($facetUpsertRequest);
@@ -48,6 +40,7 @@ final class FacetManagementController extends AbstractController
         return $this->render('facet_management/index.html.twig', [
             'facets' => $listingResult->items,
             'facetTotal' => $listingResult->total,
+            'facetAggregations' => $listingResult->aggregations,
             'listingCriteria' => $criteria,
             'facetForm' => $form->createView(),
             'materializedFacet' => $materializedFacet,

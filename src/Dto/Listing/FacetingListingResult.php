@@ -10,4 +10,11 @@ final class FacetingListingResult
     public array $items = [];
 
     public int $total = 0;
+
+    public FacetingAggregationResult $aggregations;
+
+    public function __construct()
+    {
+        $this->aggregations = new FacetingAggregationResult();
+    }
 }

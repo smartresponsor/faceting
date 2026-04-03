@@ -21,5 +21,15 @@ final class FacetingListingApiControllerTest extends WebTestCase
         self::assertSame(1, $data['total']);
         self::assertSame('price', $data['items'][0]['code']);
         self::assertSame('range', $data['items'][0]['type']);
+
+        self::assertArrayHasKey('aggregations', $data);
+        self::assertArrayHasKey('types', $data['aggregations']);
+        self::assertArrayHasKey('visibility', $data['aggregations']);
+
+        self::assertSame('range', $data['aggregations']['types'][0]['key']);
+        self::assertSame(1, $data['aggregations']['types'][0]['count']);
+
+        self::assertSame('visible', $data['aggregations']['visibility'][0]['key']);
+        self::assertSame(1, $data['aggregations']['visibility'][0]['count']);
     }
 }

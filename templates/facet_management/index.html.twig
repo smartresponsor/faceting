@@ -48,6 +48,39 @@
                             <a href="/faceting/management/facets" class="btn btn-outline-secondary">Reset</a>
                         </div>
                     </form>
+
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <h3 class="h6 mb-3">Type aggregation</h3>
+                                <ul class="list-unstyled mb-0">
+                                    {% for bucket in facetAggregations.types %}
+                                        <li class="d-flex justify-content-between">
+                                            <span>{{ bucket.key|title }}</span>
+                                            <span class="badge text-bg-light">{{ bucket.count }}</span>
+                                        </li>
+                                    {% else %}
+                                        <li class="text-secondary">No type buckets available.</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <h3 class="h6 mb-3">Visibility aggregation</h3>
+                                <ul class="list-unstyled mb-0">
+                                    {% for bucket in facetAggregations.visibility %}
+                                        <li class="d-flex justify-content-between">
+                                            <span>{{ bucket.key|title }}</span>
+                                            <span class="badge text-bg-light">{{ bucket.count }}</span>
+                                        </li>
+                                    {% else %}
+                                        <li class="text-secondary">No visibility buckets available.</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -56,10 +89,10 @@
                     <table class="table table-striped align-middle mb-0">
                         <thead>
                         <tr>
-                            <th>Code</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Visible</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Visible</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -80,33 +113,36 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-5">
-            <div class="card shadow-sm mb-4">
+            {{ form_start(facetForm, {attr: {class: 'card shadow-sm'}}) }}
                 <div class="card-body">
-                    <h2 class="h5 mb-3">Facet preview form</h2>
-                    {{ form_start(facetForm) }}
-                        {{ form_row(facetForm.code) }}
-                        {{ form_row(facetForm.name) }}
-                        {{ form_row(facetForm.type) }}
-                        {{ form_row(facetForm.visible) }}
-                        {{ form_row(facetForm.submit) }}
-                    {{ form_end(facetForm) }}
+                    <h2 class="h4 mb-3">Facet preview</h2>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            {{ form_row(facetForm.code) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(facetForm.name) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(facetForm.type) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(facetForm.visible) }}
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="card-footer bg-white border-0 pt-0">
+                    <button type="submit" class="btn btn-success">Generate preview</button>
+                </div>
+            {{ form_end(facetForm) }}
+
             {% if materializedFacet is not null %}
-                <div class="card border-success shadow-sm">
+                <div class="card shadow-sm mt-4">
                     <div class="card-body">
-                        <h2 class="h5 text-success mb-3">Materialized facet</h2>
-                        <dl class="row mb-0">
-                            <dt class="col-sm-4">Code</dt>
-                            <dd class="col-sm-8" data-testid="facet-preview-code">{{ materializedFacet.code }}</dd>
-                            <dt class="col-sm-4">Name</dt>
-                            <dd class="col-sm-8">{{ materializedFacet.name }}</dd>
-                            <dt class="col-sm-4">Type</dt>
-                            <dd class="col-sm-8">{{ materializedFacet.type }}</dd>
-                            <dt class="col-sm-4">Visible</dt>
-                            <dd class="col-sm-8">{{ materializedFacet.visible ? 'yes' : 'no' }}</dd>
-                        </dl>
+                        <h2 class="h5 mb-3">Materialized facet</h2>
+                        <pre class="mb-0">{{ materializedFacet|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
                     </div>
                 </div>
             {% endif %}
