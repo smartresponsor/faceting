@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Integration\Demo;
+namespace App\Faceting\Tests\Integration\Demo;
 
-use App\Entity\Facet;
-use App\Repository\FacetRepository;
-use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\Entity\Facet;
+use App\Faceting\Repository\FacetRepository;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

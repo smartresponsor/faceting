@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Management;
+namespace App\Faceting\Tests\Functional\Management;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

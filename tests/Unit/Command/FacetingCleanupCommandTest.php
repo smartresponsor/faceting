@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Command;
+namespace App\Faceting\Tests\Unit\Command;
 
-use App\Command\FacetingCleanupCommand;
-use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\Command\FacetingCleanupCommand;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -14,7 +14,7 @@ final class FacetingCleanupCommandTest extends TestCase
 {
     public function testExecuteReportsRemovedRows(): void
     {
-        $service = new class () implements FacetingDemoSeederServiceInterface {
+        $service = new class implements FacetingDemoSeederServiceInterface {
             public function replaceDemoData(): int
             {
                 return 0;

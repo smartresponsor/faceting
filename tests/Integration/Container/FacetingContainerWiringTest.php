@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Integration\Container;
+namespace App\Faceting\Tests\Integration\Container;
 
-use App\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
-use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
-use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
-use App\ServiceInterface\Report\FacetingReportServiceInterface;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\ServiceInterface\Report\FacetingReportServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class FacetingContainerWiringTest extends KernelTestCase

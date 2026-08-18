@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Api;
+namespace App\Faceting\Tests\Functional\Api;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -11,7 +11,7 @@ final class FacetingListingApiControllerTest extends WebTestCase
     public function testListingEndpointReturnsFilteredJson(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/faceting/api/listing?type=range');
+        $client->request('GET', '/api/facet/listing?type=range');
 
         self::assertResponseIsSuccessful();
         self::assertResponseFormatSame('json');

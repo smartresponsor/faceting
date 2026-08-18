@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ValueObject;
+namespace App\Faceting\Tests\Unit\ValueObject;
 
-use App\ValueObject\Facet\FacetCode;
-use InvalidArgumentException;
+use App\Faceting\ValueObject\Facet\FacetCode;
 use PHPUnit\Framework\TestCase;
 
 final class FacetCodeTest extends TestCase
@@ -17,7 +16,7 @@ final class FacetCodeTest extends TestCase
 
     public function testItRejectsInvalidCharacters(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         new FacetCode('Brand Name');
     }

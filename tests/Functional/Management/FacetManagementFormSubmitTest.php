@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Management;
+namespace App\Faceting\Tests\Functional\Management;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -16,7 +16,7 @@ final class FacetManagementFormSubmitTest extends WebTestCase
         $client->submit(
             $crawler->selectButton('Preview facet')->form([
                 'facet_upsert[code]' => 'Campaign_Code',
-                'facet_upsert[name]' => 'Campaign Facet',
+                'facet_upsert[nameEntity]' => 'Campaign Facet',
                 'facet_upsert[type]' => 'term',
                 'facet_upsert[visible]' => '1',
             ])

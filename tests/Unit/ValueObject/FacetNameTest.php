@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ValueObject;
+namespace App\Faceting\Tests\Unit\ValueObject;
 
-use App\ValueObject\Facet\FacetName;
-use InvalidArgumentException;
+use App\Faceting\ValueObject\Facet\FacetName;
 use PHPUnit\Framework\TestCase;
 
 final class FacetNameTest extends TestCase
@@ -17,7 +16,7 @@ final class FacetNameTest extends TestCase
 
     public function testItRejectsEmptyFacetName(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         new FacetName('   ');
     }

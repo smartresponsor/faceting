@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Listing;
+namespace App\Faceting\Tests\Unit\Listing;
 
-use App\Dto\Facet\FacetUpsertRequest;
-use App\Dto\Listing\FacetingListingCriteria;
-use App\Service\Listing\FacetingEngineService;
-use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\Dto\Facet\FacetUpsertRequest;
+use App\Faceting\Dto\Listing\FacetingListingCriteria;
+use App\Faceting\Service\Listing\FacetingEngineService;
+use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
 use PHPUnit\Framework\TestCase;
 
 final class FacetingEngineServiceTest extends TestCase
 {
     public function testResolveAppliesFilters(): void
     {
-        $facetService = new class () implements FacetingFacetServiceInterface {
+        $facetService = new class implements FacetingFacetServiceInterface {
             public function listDemoFacets(): array
             {
                 return [
-                    ['code' => 'brand', 'name' => 'Brand', 'type' => 'term', 'visible' => true],
-                    ['code' => 'price', 'name' => 'Price', 'type' => 'range', 'visible' => true],
-                    ['code' => 'hidden', 'name' => 'Hidden', 'type' => 'term', 'visible' => false],
+                    ['code' => 'brand', 'nameEntity' => 'Brand', 'type' => 'term', 'visible' => true],
+                    ['code' => 'price', 'nameEntity' => 'Price', 'type' => 'range', 'visible' => true],
+                    ['code' => 'hidden', 'nameEntity' => 'Hidden', 'type' => 'term', 'visible' => false],
                 ];
             }
 
@@ -52,13 +52,13 @@ final class FacetingEngineServiceTest extends TestCase
 
     public function testResolveBuildsAggregationsForUnfilteredListing(): void
     {
-        $facetService = new class () implements FacetingFacetServiceInterface {
+        $facetService = new class implements FacetingFacetServiceInterface {
             public function listDemoFacets(): array
             {
                 return [
-                    ['code' => 'brand', 'name' => 'Brand', 'type' => 'term', 'visible' => true],
-                    ['code' => 'price', 'name' => 'Price', 'type' => 'range', 'visible' => true],
-                    ['code' => 'hidden', 'name' => 'Hidden', 'type' => 'term', 'visible' => false],
+                    ['code' => 'brand', 'nameEntity' => 'Brand', 'type' => 'term', 'visible' => true],
+                    ['code' => 'price', 'nameEntity' => 'Price', 'type' => 'range', 'visible' => true],
+                    ['code' => 'hidden', 'nameEntity' => 'Hidden', 'type' => 'term', 'visible' => false],
                 ];
             }
 

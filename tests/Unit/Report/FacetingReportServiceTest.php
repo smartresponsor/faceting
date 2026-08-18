@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Report;
+namespace App\Faceting\Tests\Unit\Report;
 
-use App\Dto\Facet\FacetUpsertRequest;
-use App\Service\Report\FacetingReportService;
-use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\Dto\Facet\FacetUpsertRequest;
+use App\Faceting\Service\Report\FacetingReportService;
+use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
 use PHPUnit\Framework\TestCase;
 
 final class FacetingReportServiceTest extends TestCase
 {
     public function testBuildDemoFacetReportReturnsExpectedCounts(): void
     {
-        $facetService = new class () implements FacetingFacetServiceInterface {
+        $facetService = new class implements FacetingFacetServiceInterface {
             public function listDemoFacets(): array
             {
                 return [
-                    ['code' => 'brand', 'name' => 'Brand', 'type' => 'term', 'visible' => true],
-                    ['code' => 'price', 'name' => 'Price', 'type' => 'range', 'visible' => true],
-                    ['code' => 'campaign_xy', 'name' => 'Campaign xy', 'type' => 'term', 'visible' => false],
+                    ['code' => 'brand', 'nameEntity' => 'Brand', 'type' => 'term', 'visible' => true],
+                    ['code' => 'price', 'nameEntity' => 'Price', 'type' => 'range', 'visible' => true],
+                    ['code' => 'campaign_xy', 'nameEntity' => 'Campaign xy', 'type' => 'term', 'visible' => false],
                 ];
             }
 

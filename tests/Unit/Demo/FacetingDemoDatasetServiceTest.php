@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Demo;
+namespace App\Faceting\Tests\Unit\Demo;
 
-use App\Service\Demo\FacetingDemoDatasetService;
+use App\Faceting\Service\Demo\FacetingDemoDatasetService;
 use PHPUnit\Framework\TestCase;
 
 final class FacetingDemoDatasetServiceTest extends TestCase

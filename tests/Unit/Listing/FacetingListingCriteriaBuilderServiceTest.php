@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Listing;
+namespace App\Faceting\Tests\Unit\Listing;
 
-use App\Service\Listing\FacetingListingCriteriaBuilderService;
+use App\Faceting\Service\Listing\FacetingListingCriteriaBuilderService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Command;
+namespace App\Faceting\Tests\Unit\Command;
 
-use App\Command\FacetingReportCommand;
-use App\ServiceInterface\Report\FacetingReportServiceInterface;
+use App\Faceting\Command\FacetingReportCommand;
+use App\Faceting\ServiceInterface\Report\FacetingReportServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -14,7 +14,7 @@ final class FacetingReportCommandTest extends TestCase
 {
     public function testExecuteRendersReportSummary(): void
     {
-        $service = new class () implements FacetingReportServiceInterface {
+        $service = new class implements FacetingReportServiceInterface {
             public function buildDemoFacetReport(): array
             {
                 return [
