@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Listing;
+namespace App\Faceting\Service\Listing;
 
-use App\Dto\Listing\FacetingAggregationBucket;
-use App\Dto\Listing\FacetingAggregationResult;
-use App\Dto\Listing\FacetingListingCriteria;
-use App\Dto\Listing\FacetingListingResult;
-use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
-use App\ServiceInterface\Listing\FacetingEngineServiceInterface;
+use App\Faceting\Dto\Listing\FacetingAggregationBucket;
+use App\Faceting\Dto\Listing\FacetingAggregationResult;
+use App\Faceting\Dto\Listing\FacetingListingCriteria;
+use App\Faceting\Dto\Listing\FacetingListingResult;
+use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\ServiceInterface\Listing\FacetingEngineServiceInterface;
 
 final class FacetingEngineService implements FacetingEngineServiceInterface
 {
@@ -38,7 +38,7 @@ final class FacetingEngineService implements FacetingEngineServiceInterface
 
                 if (
                     !str_contains(strtolower($item['code']), $needle)
-                    && !str_contains(strtolower($item['name']), $needle)
+                    && !str_contains(strtolower($item['nameEntity']), $needle)
                 ) {
                     continue;
                 }
@@ -93,3 +93,4 @@ final class FacetingEngineService implements FacetingEngineServiceInterface
         return $aggregation;
     }
 }
+

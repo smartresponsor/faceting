@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\Faceting\DataFixtures;
 
-use App\Entity\Facet;
-use App\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
-use App\ValueObject\Facet\FacetCode;
-use App\ValueObject\Facet\FacetName;
+use App\Faceting\Entity\Facet;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
+use App\Faceting\ValueObject\Facet\FacetCode;
+use App\Faceting\ValueObject\Facet\FacetName;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -23,7 +23,7 @@ final class FacetingFixture extends Fixture
         foreach ($this->facetingDemoDatasetService->buildDataset() as $row) {
             $manager->persist(new Facet(
                 new FacetCode($row['code']),
-                new FacetName($row['name']),
+                new FacetName($row['nameEntity']),
                 $row['type'],
                 $row['visible'],
                 $row['position'],

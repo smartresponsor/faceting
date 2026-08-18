@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Facet;
+namespace App\Faceting\Form\Facet;
 
-use App\Dto\Facet\FacetUpsertRequest;
+use App\Faceting\Dto\Facet\FacetUpsertRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,7 +19,7 @@ final class FacetUpsertType extends AbstractType
     {
         $builder
             ->add('code', TextType::class)
-            ->add('name', TextType::class)
+            ->add('nameEntity', TextType::class)
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Term' => 'term',

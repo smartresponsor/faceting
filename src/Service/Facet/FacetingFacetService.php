@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Facet;
+namespace App\Faceting\Service\Facet;
 
-use App\Dto\Facet\FacetUpsertRequest;
-use App\Enum\FacetType;
-use App\Repository\FacetRepository;
-use App\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
-use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
-use App\ValueObject\Facet\FacetCode;
-use App\ValueObject\Facet\FacetName;
+use App\Faceting\Dto\Facet\FacetUpsertRequest;
+use App\Faceting\Enum\FacetType;
+use App\Faceting\Repository\FacetRepository;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
+use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\ValueObject\Facet\FacetCode;
+use App\Faceting\ValueObject\Facet\FacetName;
 
 final class FacetingFacetService implements FacetingFacetServiceInterface
 {
@@ -26,7 +26,7 @@ final class FacetingFacetService implements FacetingFacetServiceInterface
         foreach ($this->facetRepository->findOrderedVisibleFacets() as $facet) {
             $items[] = [
                 'code' => $facet->getCode()->toString(),
-                'name' => $facet->getName()->toString(),
+                'nameEntity' => $facet->getName()->toString(),
                 'type' => $facet->getType()->value,
                 'visible' => $facet->isVisible(),
             ];
@@ -43,7 +43,7 @@ final class FacetingFacetService implements FacetingFacetServiceInterface
 
             $items[] = [
                 'code' => $row['code'],
-                'name' => $row['name'],
+                'nameEntity' => $row['nameEntity'],
                 'type' => $row['type']->value,
                 'visible' => $row['visible'],
             ];
@@ -55,12 +55,12 @@ final class FacetingFacetService implements FacetingFacetServiceInterface
     public function materialize(FacetUpsertRequest $request): array
     {
         $code = new FacetCode($request->code);
-        $name = new FacetName($request->name);
+        $nameEntity = new FacetName($request->nameEntity);
         $type = FacetType::from($request->type);
 
         return [
             'code' => $code->toString(),
-            'name' => $name->toString(),
+            'nameEntity' => $nameEntity->toString(),
             'type' => $type->value,
             'visible' => $request->visible,
         ];

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Command;
+namespace App\Faceting\Command;
 
-use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,3 +30,4 @@ final class FacetingDemoResetCommand extends Command
         return Command::SUCCESS;
     }
 }
+

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Report;
+namespace App\Faceting\Service\Report;
 
-use App\ServiceInterface\Facet\FacetingFacetServiceInterface;
-use App\ServiceInterface\Report\FacetingReportServiceInterface;
+use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\ServiceInterface\Report\FacetingReportServiceInterface;
 
 final class FacetingReportService implements FacetingReportServiceInterface
 {

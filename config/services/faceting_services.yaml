@@ -3,7 +3,7 @@ services:
     autowire: true
     autoconfigure: true
 
-  App\\:
+  App\Faceting\:
     resource: '../../src/'
     exclude:
       - '../../src/Kernel.php'
@@ -12,9 +12,18 @@ services:
       - '../../src/ValueObject/'
       - '../../src/ServiceInterface/'
 
-  App\\ServiceInterface\\Facet\\FacetingFacetServiceInterface: '@App\\Service\\Facet\\FacetingFacetService'
-  App\\ServiceInterface\\Report\\FacetingReportServiceInterface: '@App\\Service\\Report\\FacetingReportService'
-  App\\ServiceInterface\\Demo\\FacetingDemoDatasetServiceInterface: '@App\\Service\\Demo\\FacetingDemoDatasetService'
-  App\\ServiceInterface\\Demo\\FacetingDemoSeederServiceInterface: '@App\\Service\\Demo\\FacetingDemoSeederService'
-  App\\ServiceInterface\\Listing\\FacetingEngineServiceInterface: '@App\\Service\\Listing\\FacetingEngineService'
-  App\\ServiceInterface\\Listing\\FacetingListingCriteriaBuilderServiceInterface: '@App\\Service\\Listing\\FacetingListingCriteriaBuilderService'
+  App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface: '@App\Faceting\Service\Facet\FacetingFacetService'
+  App\Faceting\ServiceInterface\Report\FacetingReportServiceInterface: '@App\Faceting\Service\Report\FacetingReportService'
+  App\Faceting\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface: '@App\Faceting\Service\Demo\FacetingDemoDatasetService'
+  App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface: '@App\Faceting\Service\Demo\FacetingDemoSeederService'
+  App\Faceting\ServiceInterface\Listing\FacetingEngineServiceInterface: '@App\Faceting\Service\Listing\FacetingEngineService'
+  App\Faceting\ServiceInterface\Listing\FacetingListingCriteriaBuilderServiceInterface: '@App\Faceting\Service\Listing\FacetingListingCriteriaBuilderService'
+  App\Faceting\Service\Management\FacetManagementSurfaceBuilder:
+    public: true
+  App\Faceting\Service\Management\FacetManagementResponder:
+    public: true
+    tags: ['controller.service_arguments']
+  App\Faceting\Service\Api\FacetingListingApiResponder:
+    public: true
+
+  App\Faceting\RepositoryInterface\FacetRepositoryInterface: '@App\Faceting\Repository\FacetRepository'

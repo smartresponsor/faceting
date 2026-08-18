@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Command;
+namespace App\Faceting\Command;
 
-use App\ServiceInterface\Report\FacetingReportServiceInterface;
+use App\Faceting\ServiceInterface\Report\FacetingReportServiceInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,3 +42,4 @@ final class FacetingReportCommand extends Command
         return Command::SUCCESS;
     }
 }
+

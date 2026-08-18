@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceInterface\Demo;
+namespace App\Faceting\ServiceInterface\Demo;
 
-use App\Enum\FacetType;
+use App\Faceting\Enum\FacetType;
 
 interface FacetingDemoDatasetServiceInterface
 {
@@ -13,3 +13,4 @@ interface FacetingDemoDatasetServiceInterface
      */
     public function buildDataset(): array;
 }
+

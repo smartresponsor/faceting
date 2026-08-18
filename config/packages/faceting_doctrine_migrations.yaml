@@ -1,4 +1,1 @@
-doctrine_migrations:
-  migrations_paths:
-    'DoctrineMigrations': '%kernel.project_dir%/migrations'
-  enable_profiler: false
+# Faceting is entity-first. Doctrine Migrations paths are intentionally not registered here.

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceInterface\Listing;
+namespace App\Faceting\ServiceInterface\Listing;
 
-use App\Dto\Listing\FacetingListingCriteria;
-use App\Dto\Listing\FacetingListingResult;
+use App\Faceting\Dto\Listing\FacetingListingCriteria;
+use App\Faceting\Dto\Listing\FacetingListingResult;
 
 interface FacetingEngineServiceInterface
 {

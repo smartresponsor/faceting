@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Demo;
+namespace App\Faceting\Service\Demo;
 
-use App\Entity\Facet;
-use App\Repository\FacetRepository;
-use App\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
-use App\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
-use App\ValueObject\Facet\FacetCode;
-use App\ValueObject\Facet\FacetName;
+use App\Faceting\Entity\Facet;
+use App\Faceting\Repository\FacetRepository;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
+use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\ValueObject\Facet\FacetCode;
+use App\Faceting\ValueObject\Facet\FacetName;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class FacetingDemoSeederService implements FacetingDemoSeederServiceInterface
@@ -29,7 +29,7 @@ final class FacetingDemoSeederService implements FacetingDemoSeederServiceInterf
         foreach ($this->facetingDemoDatasetService->buildDataset() as $row) {
             $this->facetRepository->save(new Facet(
                 new FacetCode($row['code']),
-                new FacetName($row['name']),
+                new FacetName($row['nameEntity']),
                 $row['type'],
                 $row['visible'],
                 $row['position'],

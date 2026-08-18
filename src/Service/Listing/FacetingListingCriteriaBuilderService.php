@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Listing;
+namespace App\Faceting\Service\Listing;
 
-use App\Dto\Listing\FacetingListingCriteria;
-use App\ServiceInterface\Listing\FacetingListingCriteriaBuilderServiceInterface;
+use App\Faceting\Dto\Listing\FacetingListingCriteria;
+use App\Faceting\ServiceInterface\Listing\FacetingListingCriteriaBuilderServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 final class FacetingListingCriteriaBuilderService implements FacetingListingCriteriaBuilderServiceInterface

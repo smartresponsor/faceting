@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceInterface\Facet;
+namespace App\Faceting\ServiceInterface\Facet;
 
-use App\Dto\Facet\FacetUpsertRequest;
+use App\Faceting\Dto\Facet\FacetUpsertRequest;
 
 interface FacetingFacetServiceInterface
 {
@@ -18,3 +18,4 @@ interface FacetingFacetServiceInterface
      */
     public function materialize(FacetUpsertRequest $request): array;
 }
+

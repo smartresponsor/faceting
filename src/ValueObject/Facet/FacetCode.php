@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\ValueObject\Facet;
+namespace App\Faceting\ValueObject\Facet;
 
 use InvalidArgumentException;
 
 final readonly class FacetCode
 {
-    public function __construct(private string $value)
+    private string $value;
+
+    public function __construct(string $value)
     {
         $normalized = mb_strtolower(trim($value));
 
