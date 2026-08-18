@@ -18,4 +18,3 @@ interface FacetingFacetServiceInterface
      */
     public function materialize(FacetUpsertRequest $request): array;
 }
-

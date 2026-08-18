@@ -36,11 +36,7 @@ final class FacetLifecyclePolicy
     public function assertCanTransition(string $from, string $to): void
     {
         if (!$this->canTransition($from, $to)) {
-            throw new \DomainException(sprintf(
-                'Invalid facet lifecycle transition from "%s" to "%s".',
-                $from,
-                $to,
-            ));
+            throw new \DomainException(sprintf('Invalid facet lifecycle transition from "%s" to "%s".', $from, $to));
         }
     }
 

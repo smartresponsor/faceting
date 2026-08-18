@@ -42,4 +42,3 @@ final class FacetingReportCommand extends Command
         return Command::SUCCESS;
     }
 }
-

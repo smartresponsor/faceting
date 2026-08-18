@@ -8,7 +8,6 @@ use App\Faceting\Enum\FacetType;
 use App\Faceting\Repository\FacetRepository;
 use App\Faceting\ValueObject\Facet\FacetCode;
 use App\Faceting\ValueObject\Facet\FacetName;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FacetRepository::class)]
@@ -44,14 +43,14 @@ final class Facet
     private int $position;
 
     #[ORM\Column]
-    private DateTimeImmutable $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column]
-    private DateTimeImmutable $updatedAt;
+    private \DateTimeImmutable $updatedAt;
 
     public function __construct(FacetCode $code, FacetName $nameEntity, FacetType $type, bool $visible = true, int $position = 0)
     {
-        $now = new DateTimeImmutable();
+        $now = new \DateTimeImmutable();
 
         $this->code = $code->toString();
         $this->nameEntity = $nameEntity->toString();
@@ -92,12 +91,12 @@ final class Facet
         return $this->position;
     }
 
-    public function getCreatedAt(): DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): DateTimeImmutable
+    public function getUpdatedAt(): \DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -128,7 +127,6 @@ final class Facet
 
     private function touch(): void
     {
-        $this->updatedAt = new DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 }
-

@@ -21,4 +21,3 @@ final class FacetingDiagnosticsCommand extends Command
         return Command::SUCCESS;
     }
 }
-

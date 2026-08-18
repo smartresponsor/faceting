@@ -30,4 +30,3 @@ final class FacetingCleanupCommand extends Command
         return Command::SUCCESS;
     }
 }
-

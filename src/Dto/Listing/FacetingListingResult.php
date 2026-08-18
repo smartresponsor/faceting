@@ -18,4 +18,3 @@ final class FacetingListingResult
         $this->aggregations = new FacetingAggregationResult();
     }
 }
-

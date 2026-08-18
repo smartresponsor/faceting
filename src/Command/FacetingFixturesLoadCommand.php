@@ -30,4 +30,3 @@ final class FacetingFixturesLoadCommand extends Command
         return Command::SUCCESS;
     }
 }
-

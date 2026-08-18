@@ -93,4 +93,3 @@ final class FacetingEngineService implements FacetingEngineServiceInterface
         return $aggregation;
     }
 }
-

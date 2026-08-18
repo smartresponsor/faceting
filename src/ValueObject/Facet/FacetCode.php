@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Faceting\ValueObject\Facet;
 
-use InvalidArgumentException;
-
 final readonly class FacetCode
 {
     private string $value;
@@ -15,11 +13,11 @@ final readonly class FacetCode
         $normalized = mb_strtolower(trim($value));
 
         if ('' === $normalized) {
-            throw new InvalidArgumentException('Facet code must not be empty.');
+            throw new \InvalidArgumentException('Facet code must not be empty.');
         }
 
         if (!preg_match('/^[a-z0-9_\-]+$/', $normalized)) {
-            throw new InvalidArgumentException('Facet code must use lowercase letters, numbers, dash, or underscore.');
+            throw new \InvalidArgumentException('Facet code must use lowercase letters, numbers, dash, or underscore.');
         }
 
         $this->value = $normalized;

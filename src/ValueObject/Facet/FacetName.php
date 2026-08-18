@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Faceting\ValueObject\Facet;
 
-use InvalidArgumentException;
-
 final readonly class FacetName
 {
     private string $value;
@@ -15,11 +13,11 @@ final readonly class FacetName
         $normalized = trim($value);
 
         if ('' === $normalized) {
-            throw new InvalidArgumentException('Facet name must not be empty.');
+            throw new \InvalidArgumentException('Facet name must not be empty.');
         }
 
         if (mb_strlen($normalized) > 255) {
-            throw new InvalidArgumentException('Facet name must not exceed 255 characters.');
+            throw new \InvalidArgumentException('Facet name must not exceed 255 characters.');
         }
 
         $this->value = $normalized;

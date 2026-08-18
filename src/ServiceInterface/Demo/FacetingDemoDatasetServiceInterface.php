@@ -13,4 +13,3 @@ interface FacetingDemoDatasetServiceInterface
      */
     public function buildDataset(): array;
 }
-

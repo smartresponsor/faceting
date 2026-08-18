@@ -30,4 +30,3 @@ final class FacetingDemoResetCommand extends Command
         return Command::SUCCESS;
     }
 }
-
