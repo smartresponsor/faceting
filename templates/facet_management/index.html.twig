@@ -25,18 +25,18 @@
                             <label class="form-label" for="type">Type</label>
                             <select class="form-select" id="type" name="type">
                                 <option value="">All</option>
-                                <option value="term"{{ listingCriteria.type == 'term' ? ' selected' : '' }}>Term</option>
-                                <option value="range"{{ listingCriteria.type == 'range' ? ' selected' : '' }}>Range</option>
-                                <option value="boolean"{{ listingCriteria.type == 'boolean' ? ' selected' : '' }}>Boolean</option>
-                                <option value="hierarchy"{{ listingCriteria.type == 'hierarchy' ? ' selected' : '' }}>Hierarchy</option>
+                                <option value="term"{% if listingCriteria.type == 'term' %} selected{% endif %}>Term</option>
+                                <option value="range"{% if listingCriteria.type == 'range' %} selected{% endif %}>Range</option>
+                                <option value="boolean"{% if listingCriteria.type == 'boolean' %} selected{% endif %}>Boolean</option>
+                                <option value="hierarchy"{% if listingCriteria.type == 'hierarchy' %} selected{% endif %}>Hierarchy</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label" for="visible">Visible</label>
                             <select class="form-select" id="visible" name="visible">
-                                <option value="true"{{ listingCriteria.visible is same as(true) ? ' selected' : '' }}>Visible only</option>
-                                <option value="false"{{ listingCriteria.visible is same as(false) ? ' selected' : '' }}>Hidden only</option>
-                                <option value=""{{ listingCriteria.visible is null ? ' selected' : '' }}>Any</option>
+                                <option value="true"{% if listingCriteria.visible is same as(true) %} selected{% endif %}>Visible only</option>
+                                <option value="false"{% if listingCriteria.visible is same as(false) %} selected{% endif %}>Hidden only</option>
+                                <option value=""{% if listingCriteria.visible is null %} selected{% endif %}>Any</option>
                             </select>
                         </div>
                         <div class="col-md-4">
