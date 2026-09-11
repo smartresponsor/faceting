@@ -5,15 +5,15 @@ manifest:
 
 allowed_examples:
   paths:
-    - src/Service/Facet/FacetingFacetService.php
-    - src/Service/Report/FacetingReportService.php
-    - src/ServiceInterface/Facet/FacetingFacetServiceInterface.php
-    - src/ServiceInterface/Report/FacetingReportServiceInterface.php
+    - src/Service/Facet/FacetService.php
+    - src/Service/Report/FacetReportService.php
+    - src/ServiceInterface/Facet/FacetServiceInterface.php
+    - src/ServiceInterface/Report/FacetReportServiceInterface.php
     - src/ValueObject/Facet/FacetCode.php
     - config/services/faceting_services.yaml
 
 forbidden_examples:
   paths:
     - src/Domain/Facet/FacetService.php
-    - src/Service/Facet/FacetingFacetServiceInterface.php
+    - src/Service/Facet/FacetServiceInterface.php
     - config/services/facet.yaml

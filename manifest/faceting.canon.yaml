@@ -10,7 +10,7 @@ component_identity:
   canonical_code_root_path: src/
   forbidden_root_namespaces:
     - Smartresponsor
-    - Faceting
+    - Facet
 
 structure_rules:
   forbidden_directories:
@@ -21,7 +21,7 @@ service_rules:
   implementation_root: src/Service
   interface_root: src/ServiceInterface
   interfaces_inside_service_tree_forbidden: true
-  component_local_service_prefix: Faceting
+  component_local_service_prefix: Facet
   service_suffix: Service
 
 configuration_rules:
