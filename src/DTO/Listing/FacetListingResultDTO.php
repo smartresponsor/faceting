@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Faceting\DTO\Listing;
 
+/**
+ * Carries filtered facet rows, total count, and typed aggregations from the listing engine.
+ */
 final class FacetListingResultDTO
 {
     /** @var list<array{code:string,nameEntity:string,type:string,visible:bool}> */

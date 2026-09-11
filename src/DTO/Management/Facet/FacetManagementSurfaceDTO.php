@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Faceting\DTO\Management\Facet;
 
+/**
+ * Carries the typed management view, locations, data, and metadata presentation payload.
+ */
 final readonly class FacetManagementSurfaceDTO
 {
     /**

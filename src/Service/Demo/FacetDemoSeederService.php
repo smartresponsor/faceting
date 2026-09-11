@@ -12,8 +12,14 @@ use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use App\Faceting\ValueObject\Definition\Facet\FacetName;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Owns replacement and cleanup of persisted Faceting demonstration data for local runtime use.
+ */
 final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
 {
+    /**
+     * Initializes demo persistence with Doctrine, dataset, and facet repository collaborators.
+     */
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly FacetDemoDatasetServiceInterface $facetingDemoDatasetService,
@@ -21,6 +27,9 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
     ) {
     }
 
+    /**
+     * Replaces existing rows with the canonical demo dataset and returns the inserted count.
+     */
     public function replaceDemoData(): int
     {
         $this->clearAll();
@@ -42,6 +51,9 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
         return $count;
     }
 
+    /**
+     * Removes all persisted facet rows and returns the number removed before clearing Doctrine.
+     */
     public function clearAll(): int
     {
         $count = 0;

@@ -84,3 +84,14 @@ Evaluate disjunctive/alternative facet counts, numeric range buckets, bucket pag
 - `composer validate --strict --check-lock`: manifest/lock are structurally valid; strict exit remains non-zero only for the intentional local `*@dev` sibling path dependency constraints. Production manifest JSON validation passes.
 - Remaining advisory debt: Canon012 typed-boundary review for four internal array contracts and Canon031 PHPDoc coverage below 70%. These are visible, bounded, and intentionally deferred to a focused non-RC migration/documentation wave rather than being suppressed.
 - Final Git integration must include the complete coherent Faceting canonization wave and this journal, followed by branch/upstream/worktree acceptance.
+
+### Advisory debt hardening continuation
+
+- Continuation branch: `hardening/faceting-advisory-debt` on the Console MCP local repository execution plane.
+- Canon012 typed-boundary debt was already closed on this branch before the documentation wave: Gating reports configured internal Builder/Service/Responder roots expose typed return contracts. The hardening introduced dedicated DTOs for demo datasets, facet collections/items, management surfaces, and reports rather than preserving stable internal `array<string,mixed>` contracts.
+- Canon031 PHPDoc debt was closed with meaningful English responsibility and behavior documentation on production `src/` types; no warning suppression, threshold override, test-only padding, or placeholder comments were used.
+- Final Canon031 result: classes 32/42 (76.2%), methods 52/73 (71.2%), both above the canonical 70% threshold.
+- Final Gating result: 54 rules, 0 failed, 0 warnings, 0 suppressed, 8 profile/context skips.
+- Regression: PHPStan level 8 PASS; PHP-CS-Fixer check PASS (0/61 files); full Symfony pipeline PASS; unit 14/14 (50 assertions), integration 2/2 (11 assertions), functional 4/4 (27 assertions), total 20 tests / 88 assertions.
+- Doctrine mapping validation PASS with database synchronization intentionally skipped by the declared command; migration currentness PASS with no migrations to execute; production Composer manifest validation PASS.
+- This continuation closes the two advisory debts that remained after the RC integration. No new product feature or search-engine parity work was introduced.

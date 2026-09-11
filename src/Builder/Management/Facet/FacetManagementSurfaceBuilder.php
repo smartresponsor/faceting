@@ -13,8 +13,14 @@ use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Assembles the typed management presentation payload for the Faceting management screen.
+ */
 final readonly class FacetManagementSurfaceBuilder
 {
+    /**
+     * Initializes the management builder with its facet, listing, criteria, and form collaborators.
+     */
     public function __construct(
         private FacetServiceInterface $facetingFacetService,
         private FacetEngineServiceInterface $facetingEngineService,
@@ -23,6 +29,9 @@ final readonly class FacetManagementSurfaceBuilder
     ) {
     }
 
+    /**
+     * Builds the complete typed management surface after processing the incoming form request.
+     */
     public function build(Request $request): FacetManagementSurfaceDTO
     {
         $materializedFacet = null;

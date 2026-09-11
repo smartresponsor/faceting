@@ -14,14 +14,23 @@ use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use App\Faceting\ValueObject\Definition\Facet\FacetName;
 
+/**
+ * Provides Faceting management operations for listing and materializing validated facet definitions.
+ */
 final class FacetService implements FacetServiceInterface
 {
+    /**
+     * Initializes management behavior with persistent facets and the deterministic fallback dataset.
+     */
     public function __construct(
         private readonly FacetRepository $facetRepository,
         private readonly FacetDemoDatasetServiceInterface $facetingDemoDatasetService,
     ) {
     }
 
+    /**
+     * Returns persisted visible facets or typed demo fallback rows when persistence is empty.
+     */
     public function listDemoFacets(): FacetCollectionDTO
     {
         $items = [];
@@ -54,6 +63,9 @@ final class FacetService implements FacetServiceInterface
         return new FacetCollectionDTO($items);
     }
 
+    /**
+     * Converts validated management input into a normalized typed facet item without persistence.
+     */
     public function materialize(FacetUpsertDTO $request): FacetItemDTO
     {
         $code = new FacetCode($request->code);
