@@ -20,13 +20,13 @@ final class FacetFixture extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        foreach ($this->facetingDemoDatasetService->buildDataset() as $row) {
+        foreach ($this->facetingDemoDatasetService->buildDataset()->items as $row) {
             $manager->persist(new Facet(
-                new FacetCode($row['code']),
-                new FacetName($row['nameEntity']),
-                $row['type'],
-                $row['visible'],
-                $row['position'],
+                new FacetCode($row->code),
+                new FacetName($row->nameEntity),
+                $row->type,
+                $row->visible,
+                $row->position,
             ));
         }
 

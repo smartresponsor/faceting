@@ -26,13 +26,13 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
         $this->clearAll();
 
         $count = 0;
-        foreach ($this->facetingDemoDatasetService->buildDataset() as $row) {
+        foreach ($this->facetingDemoDatasetService->buildDataset()->items as $row) {
             $this->facetRepository->save(new Facet(
-                new FacetCode($row['code']),
-                new FacetName($row['nameEntity']),
-                $row['type'],
-                $row['visible'],
-                $row['position'],
+                new FacetCode($row->code),
+                new FacetName($row->nameEntity),
+                $row->type,
+                $row->visible,
+                $row->position,
             ));
             ++$count;
         }

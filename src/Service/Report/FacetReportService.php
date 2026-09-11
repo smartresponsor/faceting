@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Faceting\Service\Report;
 
+use App\Faceting\DTO\Report\FacetReportDTO;
 use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 use App\Faceting\ServiceInterface\Report\FacetReportServiceInterface;
 
@@ -14,28 +15,27 @@ final class FacetReportService implements FacetReportServiceInterface
     ) {
     }
 
-    public function buildDemoFacetReport(): array
+    public function buildDemoFacetReport(): FacetReportDTO
     {
-        $facets = $this->facetingFacetService->listDemoFacets();
+        $facets = $this->facetingFacetService->listDemoFacets()->items;
         $byType = [];
         $visible = 0;
 
         foreach ($facets as $facet) {
-            $type = (string) $facet['type'];
-            $byType[$type] = ($byType[$type] ?? 0) + 1;
+            $byType[$facet->type] = ($byType[$facet->type] ?? 0) + 1;
 
-            if (true === (bool) $facet['visible']) {
+            if (true === $facet->visible) {
                 ++$visible;
             }
         }
 
         ksort($byType);
 
-        return [
-            'total' => count($facets),
-            'visible' => $visible,
-            'hidden' => count($facets) - $visible,
-            'byType' => $byType,
-        ];
+        return new FacetReportDTO(
+            count($facets),
+            $visible,
+            count($facets) - $visible,
+            $byType,
+        );
     }
 }

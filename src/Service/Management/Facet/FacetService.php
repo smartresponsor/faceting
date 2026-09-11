@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Faceting\Service\Management\Facet;
 
+use App\Faceting\DTO\Management\Facet\FacetCollectionDTO;
+use App\Faceting\DTO\Management\Facet\FacetItemDTO;
 use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
 use App\Faceting\Enum\FacetType;
 use App\Faceting\Repository\FacetRepository;
@@ -20,49 +22,49 @@ final class FacetService implements FacetServiceInterface
     ) {
     }
 
-    public function listDemoFacets(): array
+    public function listDemoFacets(): FacetCollectionDTO
     {
         $items = [];
         foreach ($this->facetRepository->findOrderedVisibleFacets() as $facet) {
-            $items[] = [
-                'code' => $facet->getCode()->toString(),
-                'nameEntity' => $facet->getName()->toString(),
-                'type' => $facet->getType()->value,
-                'visible' => $facet->isVisible(),
-            ];
+            $items[] = new FacetItemDTO(
+                $facet->getCode()->toString(),
+                $facet->getName()->toString(),
+                $facet->getType()->value,
+                $facet->isVisible(),
+            );
         }
 
         if ([] !== $items) {
-            return $items;
+            return new FacetCollectionDTO($items);
         }
 
-        foreach ($this->facetingDemoDatasetService->buildDataset() as $row) {
-            if (true !== $row['visible']) {
+        foreach ($this->facetingDemoDatasetService->buildDataset()->items as $row) {
+            if (true !== $row->visible) {
                 continue;
             }
 
-            $items[] = [
-                'code' => $row['code'],
-                'nameEntity' => $row['nameEntity'],
-                'type' => $row['type']->value,
-                'visible' => $row['visible'],
-            ];
+            $items[] = new FacetItemDTO(
+                $row->code,
+                $row->nameEntity,
+                $row->type->value,
+                $row->visible,
+            );
         }
 
-        return $items;
+        return new FacetCollectionDTO($items);
     }
 
-    public function materialize(FacetUpsertDTO $request): array
+    public function materialize(FacetUpsertDTO $request): FacetItemDTO
     {
         $code = new FacetCode($request->code);
         $nameEntity = new FacetName($request->nameEntity);
         $type = FacetType::from($request->type);
 
-        return [
-            'code' => $code->toString(),
-            'nameEntity' => $nameEntity->toString(),
-            'type' => $type->value,
-            'visible' => $request->visible,
-        ];
+        return new FacetItemDTO(
+            $code->toString(),
+            $nameEntity->toString(),
+            $type->value,
+            $request->visible,
+        );
     }
 }

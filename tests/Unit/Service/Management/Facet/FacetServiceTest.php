@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Faceting\Tests\Unit\Service\Management\Facet;
 
+use App\Faceting\DTO\Demo\FacetDemoDatasetDTO;
 use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
 use App\Faceting\Repository\FacetRepository;
 use App\Faceting\Service\Management\Facet\FacetService;
@@ -32,17 +33,17 @@ final class FacetServiceTest extends TestCase
         };
 
         $datasetService = new class implements FacetDemoDatasetServiceInterface {
-            public function buildDataset(): array
+            public function buildDataset(): FacetDemoDatasetDTO
             {
-                return [];
+                return new FacetDemoDatasetDTO([]);
             }
         };
 
         $result = (new FacetService($repository, $datasetService))->materialize($request);
 
-        self::assertSame('material-code', $result['code']);
-        self::assertSame('Material', $result['nameEntity']);
-        self::assertSame('term', $result['type']);
-        self::assertTrue($result['visible']);
+        self::assertSame('material-code', $result->code);
+        self::assertSame('Material', $result->nameEntity);
+        self::assertSame('term', $result->type);
+        self::assertTrue($result->visible);
     }
 }
