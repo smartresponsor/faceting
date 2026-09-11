@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Faceting\Repository;
 
-use App\Entity\Facet;
+use App\Faceting\Entity\Facet;
+use App\Faceting\RepositoryInterface\FacetRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class FacetRepository extends ServiceEntityRepository
+/** @extends ServiceEntityRepository<Facet> */
+class FacetRepository extends ServiceEntityRepository implements FacetRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -24,7 +26,7 @@ class FacetRepository extends ServiceEntityRepository
             ->andWhere('facet.visible = :visible')
             ->setParameter('visible', true)
             ->orderBy('facet.position', 'ASC')
-            ->addOrderBy('facet.name', 'ASC')
+            ->addOrderBy('facet.nameEntity', 'ASC')
             ->getQuery()
             ->getResult();
     }

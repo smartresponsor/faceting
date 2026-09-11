@@ -4,3 +4,17 @@
 /.phpunit.cache/
 .env.local
 .env.test.local
+
+# IDE state
+/.idea/
+/.vscode/
+*.iml
+
+# OS noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Generated Symfony references and local tool compatibility files
+/config/reference.php
+/.php-cs-fixer.dist.php

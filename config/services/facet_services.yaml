@@ -1,0 +1,29 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Faceting\:
+    resource: '../../src/'
+    exclude:
+      - '../../src/Kernel.php'
+      - '../../src/Entity/'
+      - '../../src/Enum/'
+      - '../../src/ValueObject/'
+      - '../../src/ServiceInterface/'
+
+  App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface: '@App\Faceting\Service\Management\Facet\FacetService'
+  App\Faceting\ServiceInterface\Report\FacetReportServiceInterface: '@App\Faceting\Service\Report\FacetReportService'
+  App\Faceting\ServiceInterface\Demo\FacetDemoDatasetServiceInterface: '@App\Faceting\Service\Demo\FacetDemoDatasetService'
+  App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface: '@App\Faceting\Service\Demo\FacetDemoSeederService'
+  App\Faceting\ServiceInterface\Listing\FacetEngineServiceInterface: '@App\Faceting\Service\Listing\FacetEngineService'
+  App\Faceting\BuilderInterface\Listing\Criteria\FacetListingCriteriaBuilderInterface: '@App\Faceting\Builder\Listing\Criteria\FacetListingCriteriaBuilder'
+  App\Faceting\Builder\Management\Facet\FacetManagementSurfaceBuilder:
+    public: true
+  App\Faceting\Responder\Management\Facet\FacetManagementResponder:
+    public: true
+    tags: ['controller.service_arguments']
+  App\Faceting\Responder\Api\Listing\FacetListingApiResponder:
+    public: true
+
+  App\Faceting\RepositoryInterface\FacetRepositoryInterface: '@App\Faceting\Repository\FacetRepository'

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '@Interfacing/base.html.twig' %}
 
 {% block title %}Faceting management{% endblock %}
 
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-12 d-flex gap-2">
                             <button type="submit" class="btn btn-primary">Apply filters</button>
-                            <a href="/faceting/management/facets" class="btn btn-outline-secondary">Reset</a>
+                            <a href="/facet/management/facets" class="btn btn-outline-secondary">Reset</a>
                         </div>
                     </form>
 
@@ -99,7 +99,7 @@
                         {% for facet in facets %}
                             <tr>
                                 <td>{{ facet.code }}</td>
-                                <td>{{ facet.name }}</td>
+                                <td>{{ facet.nameEntity }}</td>
                                 <td>{{ facet.type }}</td>
                                 <td>{{ facet.visible ? 'yes' : 'no' }}</td>
                             </tr>
@@ -123,7 +123,7 @@
                             {{ form_row(facetForm.code) }}
                         </div>
                         <div class="col-12">
-                            {{ form_row(facetForm.name) }}
+                            {{ form_row(facetForm.nameEntity) }}
                         </div>
                         <div class="col-md-6">
                             {{ form_row(facetForm.type) }}
@@ -139,9 +139,14 @@
             {{ form_end(facetForm) }}
 
             {% if materializedFacet is not null %}
-                <div class="card shadow-sm mt-4">
+                <div class="alert alert-success mt-4" role="status">Facet preview generated.</div>
+                <div class="card shadow-sm mt-3">
                     <div class="card-body">
                         <h2 class="h5 mb-3">Materialized facet</h2>
+                        <div class="mb-3">
+                            <span class="text-secondary">Code</span>
+                            <code data-testid="facet-preview-code">{{ materializedFacet.code }}</code>
+                        </div>
                         <pre class="mb-0">{{ materializedFacet|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
                     </div>
                 </div>

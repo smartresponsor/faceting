@@ -7,6 +7,6 @@ acceptance_gates:
   - only App namespace is used under src
   - no Domain directory exists
   - no service interface exists under src/Service
-  - all component-local services use Faceting*Service naming
+  - all component-local services use Facet*Service naming
   - config files use faceting_ prefix
   - logs and reports are used to drive fixes

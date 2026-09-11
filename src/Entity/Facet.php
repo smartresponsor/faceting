@@ -2,31 +2,42 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Faceting\Entity;
 
-use App\Enum\FacetType;
-use App\Repository\FacetRepository;
-use App\ValueObject\Facet\FacetCode;
-use App\ValueObject\Facet\FacetName;
-use DateTimeImmutable;
+use App\Faceting\Enum\FacetType;
+use App\Faceting\Repository\FacetRepository;
+use App\Faceting\ValueObject\Definition\Facet\FacetCode;
+use App\Faceting\ValueObject\Definition\Facet\FacetName;
+use App\Objecting\EntityInterface\ObjectAuditedInterface;
+use App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FacetRepository::class)]
-#[ORM\Table(name: 'facet')]
-final class Facet
+#[ORM\Table(
+    name: 'facet',
+    uniqueConstraints: [
+        new ORM\UniqueConstraint(name: 'uniq_facet_code', columns: ['code']),
+    ],
+    indexes: [
+        new ORM\Index(name: 'idx_facet_visible_position', columns: ['visible', 'position']),
+    ],
+)]
+final class Facet implements ObjectAuditedInterface
 {
+    use ObjectAuditEmbeddableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 64, unique: true)]
+    #[ORM\Column(length: 64)]
     private string $code;
 
     #[ORM\Column(length: 255)]
-    private string $name;
+    private string $nameEntity;
 
-    #[ORM\Column(enumType: FacetType::class)]
+    #[ORM\Column(length: 32, enumType: FacetType::class)]
     private FacetType $type;
 
     #[ORM\Column]
@@ -35,23 +46,14 @@ final class Facet
     #[ORM\Column]
     private int $position;
 
-    #[ORM\Column]
-    private DateTimeImmutable $createdAt;
-
-    #[ORM\Column]
-    private DateTimeImmutable $updatedAt;
-
-    public function __construct(FacetCode $code, FacetName $name, FacetType $type, bool $visible = true, int $position = 0)
+    public function __construct(FacetCode $code, FacetName $nameEntity, FacetType $type, bool $visible = true, int $position = 0)
     {
-        $now = new DateTimeImmutable();
-
         $this->code = $code->toString();
-        $this->name = $name->toString();
+        $this->nameEntity = $nameEntity->toString();
         $this->type = $type;
         $this->visible = $visible;
         $this->position = $position;
-        $this->createdAt = $now;
-        $this->updatedAt = $now;
+        $this->initializeObjectAudit();
     }
 
     public function getId(): ?int
@@ -66,7 +68,7 @@ final class Facet
 
     public function getName(): FacetName
     {
-        return new FacetName($this->name);
+        return new FacetName($this->nameEntity);
     }
 
     public function getType(): FacetType
@@ -84,9 +86,9 @@ final class Facet
         return $this->position;
     }
 
-    public function rename(FacetName $name): void
+    public function rename(FacetName $nameEntity): void
     {
-        $this->name = $name->toString();
+        $this->nameEntity = $nameEntity->toString();
         $this->touch();
     }
 
@@ -110,6 +112,6 @@ final class Facet
 
     private function touch(): void
     {
-        $this->updatedAt = new DateTimeImmutable();
+        $this->touchModified();
     }
 }

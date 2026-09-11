@@ -1,0 +1,7 @@
+faceting_management_index:
+  path: /facet/management/facets
+  controller: App\Faceting\Responder\Management\Facet\FacetManagementResponder::respond
+
+faceting_api_listing:
+  path: /api/facet/listing
+  controller: App\Faceting\Responder\Api\Listing\FacetListingApiResponder::list
