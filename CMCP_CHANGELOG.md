@@ -74,3 +74,13 @@ Evaluate disjunctive/alternative facet counts, numeric range buckets, bucket pag
 
 - Closed the deterministic `.gitignore` warning by adding IDE-state and OS-noise exclusions.
 - Typed-boundary and PHPDoc findings remain semantic/advisory migration debt rather than runtime failures. They are not suppressed or weakened in the profile; they remain visible for an explicit typed-contract/documentation wave rather than introducing broad speculative DTO/API churn during this RC cutover.
+- Final formatter-tail fix: Symfony-generated `config/reference.php` is excluded from PHP-CS-Fixer source scanning and explicitly ignored together with the redundant local `.php-cs-fixer.dist.php` compatibility file; generated reference artifacts remain local-only.
+
+### Iteration 5 — final acceptance and handoff
+
+- Re-ran `composer cs:check`: PASS (0 files require fixes).
+- Re-ran `composer pipeline:local:full`: PASS; PHP syntax, YAML, Twig, Symfony container and all 20 tests / 88 assertions are green.
+- Re-ran `composer gating`: PASS with 0 failed rules, 2 advisory warnings, 0 suppressed; `.gitignore` and generated-reference rules are green.
+- `composer validate --strict --check-lock`: manifest/lock are structurally valid; strict exit remains non-zero only for the intentional local `*@dev` sibling path dependency constraints. Production manifest JSON validation passes.
+- Remaining advisory debt: Canon012 typed-boundary review for four internal array contracts and Canon031 PHPDoc coverage below 70%. These are visible, bounded, and intentionally deferred to a focused non-RC migration/documentation wave rather than being suppressed.
+- Final Git integration must include the complete coherent Faceting canonization wave and this journal, followed by branch/upstream/worktree acceptance.
