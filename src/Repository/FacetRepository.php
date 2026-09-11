@@ -9,6 +9,7 @@ use App\Faceting\RepositoryInterface\FacetRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+/** @extends ServiceEntityRepository<Facet> */
 class FacetRepository extends ServiceEntityRepository implements FacetRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
