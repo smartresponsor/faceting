@@ -24,3 +24,4 @@ Current vertical slice:
 - Doctrine fixture foundation with dataset-service reuse
 - CLI report, fixtures load, cleanup and demo reset surfaces
 - unit coverage for normalization, dataset and reporting
+- deterministic aggregation bucket ordering: count descending, then key ascending for ties

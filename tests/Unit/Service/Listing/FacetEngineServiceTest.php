@@ -52,6 +52,39 @@ final class FacetEngineServiceTest extends TestCase
         self::assertSame(1, $result->aggregations->visibility[0]->count);
     }
 
+    public function testResolveOrdersEqualCountAggregationBucketsByKey(): void
+    {
+        $facetService = new class implements FacetServiceInterface {
+            public function listDemoFacets(): FacetCollectionDTO
+            {
+                return new FacetCollectionDTO([
+                    new FacetItemDTO('price', 'Price', 'range', true),
+                    new FacetItemDTO('brand', 'Brand', 'term', false),
+                ]);
+            }
+
+            public function materialize(FacetUpsertDTO $request): FacetItemDTO
+            {
+                return new FacetItemDTO('test', 'Test', 'term', true);
+            }
+        };
+
+        $service = new FacetEngineService($facetService);
+        $criteria = new FacetListingCriteriaDTO();
+        $criteria->visible = null;
+
+        $result = $service->resolve($criteria);
+
+        self::assertSame(['range', 'term'], array_map(
+            static fn ($bucket): string => $bucket->key,
+            $result->aggregations->types,
+        ));
+        self::assertSame(['hidden', 'visible'], array_map(
+            static fn ($bucket): string => $bucket->key,
+            $result->aggregations->visibility,
+        ));
+    }
+
     public function testResolveBuildsAggregationsForUnfilteredListing(): void
     {
         $facetService = new class implements FacetServiceInterface {
