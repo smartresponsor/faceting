@@ -14,3 +14,7 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Generated Symfony references and local tool compatibility files
+/config/reference.php
+/.php-cs-fixer.dist.php
