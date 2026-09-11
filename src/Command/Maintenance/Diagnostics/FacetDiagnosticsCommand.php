@@ -11,8 +11,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'app:faceting:diagnostics')]
+/**
+ * Exposes the Faceting diagnostics entrypoint used for operational availability checks.
+ */
 final class FacetDiagnosticsCommand extends Command
 {
+    /**
+     * Executes the diagnostics probe and reports that the component entrypoint is available.
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

@@ -8,13 +8,22 @@ use App\Faceting\DTO\Report\FacetReportDTO;
 use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 use App\Faceting\ServiceInterface\Report\FacetReportServiceInterface;
 
+/**
+ * Summarizes available facets into typed totals and per-type counts for reporting surfaces.
+ */
 final class FacetReportService implements FacetReportServiceInterface
 {
+    /**
+     * Initializes reporting with the Faceting service that supplies the current facet collection.
+     */
     public function __construct(
         private readonly FacetServiceInterface $facetingFacetService,
     ) {
     }
 
+    /**
+     * Builds visible, hidden, total, and type-count metrics from the current typed facet collection.
+     */
     public function buildDemoFacetReport(): FacetReportDTO
     {
         $facets = $this->facetingFacetService->listDemoFacets()->items;

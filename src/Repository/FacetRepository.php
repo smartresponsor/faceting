@@ -9,7 +9,11 @@ use App\Faceting\RepositoryInterface\FacetRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/** @extends ServiceEntityRepository<Facet> */
+/**
+ * Persists Facet entities and provides deterministic visible ordering for Faceting consumers.
+ *
+ * @extends ServiceEntityRepository<Facet>
+ */
 class FacetRepository extends ServiceEntityRepository implements FacetRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
@@ -31,6 +35,9 @@ class FacetRepository extends ServiceEntityRepository implements FacetRepository
             ->getResult();
     }
 
+    /**
+     * Persists a facet and optionally flushes the current Doctrine unit of work immediately.
+     */
     public function save(Facet $facet, bool $flush = false): void
     {
         $this->getEntityManager()->persist($facet);
@@ -40,6 +47,9 @@ class FacetRepository extends ServiceEntityRepository implements FacetRepository
         }
     }
 
+    /**
+     * Removes a facet and optionally flushes the current Doctrine unit of work immediately.
+     */
     public function remove(Facet $facet, bool $flush = false): void
     {
         $this->getEntityManager()->remove($facet);

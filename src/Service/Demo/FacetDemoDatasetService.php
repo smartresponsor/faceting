@@ -10,8 +10,14 @@ use App\Faceting\Enum\FacetType;
 use App\Faceting\ServiceInterface\Demo\FacetDemoDatasetServiceInterface;
 use Faker\Factory;
 
+/**
+ * Produces the deterministic typed dataset used by Faceting demos, fixtures, and fallback flows.
+ */
 final class FacetDemoDatasetService implements FacetDemoDatasetServiceInterface
 {
+    /**
+     * Builds the repeatable demo dataset with stable core rows and one seeded generated row.
+     */
     public function buildDataset(): FacetDemoDatasetDTO
     {
         $faker = Factory::create();

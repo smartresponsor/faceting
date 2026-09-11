@@ -12,14 +12,23 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'app:faceting:demo:reset')]
+/**
+ * Resets Faceting demo persistence back to the deterministic demonstration dataset.
+ */
 final class FacetDemoResetCommand extends Command
 {
+    /**
+     * Initializes the reset command with the component-owned demo seeding service.
+     */
     public function __construct(
         private readonly FacetDemoSeederServiceInterface $facetingDemoSeederService,
     ) {
         parent::__construct();
     }
 
+    /**
+     * Replaces all demo rows and reports the resulting facet count to the console.
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
