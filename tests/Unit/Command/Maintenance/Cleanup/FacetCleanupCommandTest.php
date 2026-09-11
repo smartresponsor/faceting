@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Command;
+namespace App\Faceting\Tests\Unit\Command\Maintenance\Cleanup;
 
-use App\Faceting\Command\FacetingCleanupCommand;
-use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\Command\Maintenance\Cleanup\FacetCleanupCommand;
+use App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-final class FacetingCleanupCommandTest extends TestCase
+final class FacetCleanupCommandTest extends TestCase
 {
     public function testExecuteReportsRemovedRows(): void
     {
-        $service = new class implements FacetingDemoSeederServiceInterface {
+        $service = new class implements FacetDemoSeederServiceInterface {
             public function replaceDemoData(): int
             {
                 return 0;
@@ -26,7 +26,7 @@ final class FacetingCleanupCommandTest extends TestCase
             }
         };
 
-        $tester = new CommandTester(new FacetingCleanupCommand($service));
+        $tester = new CommandTester(new FacetCleanupCommand($service));
 
         self::assertSame(Command::SUCCESS, $tester->execute([]));
         self::assertStringContainsString('7 facet rows were removed.', $tester->getDisplay());

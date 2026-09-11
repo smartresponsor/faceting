@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Service;
+namespace App\Faceting\Tests\Unit\Service\Management\Facet;
 
-use App\Faceting\Dto\Facet\FacetUpsertRequest;
+use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
 use App\Faceting\Repository\FacetRepository;
-use App\Faceting\Service\Facet\FacetingFacetService;
-use App\Faceting\ServiceInterface\Demo\FacetingDemoDatasetServiceInterface;
+use App\Faceting\Service\Management\Facet\FacetService;
+use App\Faceting\ServiceInterface\Demo\FacetDemoDatasetServiceInterface;
 use PHPUnit\Framework\TestCase;
 
-final class FacetingFacetServiceTest extends TestCase
+final class FacetServiceTest extends TestCase
 {
     public function testMaterializeNormalizesCode(): void
     {
-        $request = new FacetUpsertRequest();
+        $request = new FacetUpsertDTO();
         $request->code = ' Material-Code ';
         $request->nameEntity = 'Material';
         $request->type = 'term';
@@ -31,14 +31,14 @@ final class FacetingFacetServiceTest extends TestCase
             }
         };
 
-        $datasetService = new class implements FacetingDemoDatasetServiceInterface {
+        $datasetService = new class implements FacetDemoDatasetServiceInterface {
             public function buildDataset(): array
             {
                 return [];
             }
         };
 
-        $result = (new FacetingFacetService($repository, $datasetService))->materialize($request);
+        $result = (new FacetService($repository, $datasetService))->materialize($request);
 
         self::assertSame('material-code', $result['code']);
         self::assertSame('Material', $result['nameEntity']);

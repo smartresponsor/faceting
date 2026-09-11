@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Functional\Management;
+namespace App\Faceting\Tests\Functional\Management\Facet;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -11,7 +11,7 @@ final class FacetManagementFormSubmitTest extends WebTestCase
     public function testPreviewFormSubmissionShowsMaterializedFacet(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/faceting/management/facets');
+        $crawler = $client->request('GET', '/facet/management/facets');
 
         $client->submit(
             $crawler->selectButton('Preview facet')->form([

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Command;
+namespace App\Faceting\Tests\Unit\Command\Report;
 
-use App\Faceting\Command\FacetingReportCommand;
-use App\Faceting\ServiceInterface\Report\FacetingReportServiceInterface;
+use App\Faceting\Command\Report\FacetReportCommand;
+use App\Faceting\ServiceInterface\Report\FacetReportServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-final class FacetingReportCommandTest extends TestCase
+final class FacetReportCommandTest extends TestCase
 {
     public function testExecuteRendersReportSummary(): void
     {
-        $service = new class implements FacetingReportServiceInterface {
+        $service = new class implements FacetReportServiceInterface {
             public function buildDemoFacetReport(): array
             {
                 return [
@@ -26,7 +26,7 @@ final class FacetingReportCommandTest extends TestCase
             }
         };
 
-        $tester = new CommandTester(new FacetingReportCommand($service));
+        $tester = new CommandTester(new FacetReportCommand($service));
 
         self::assertSame(Command::SUCCESS, $tester->execute([]));
         self::assertStringContainsString('Faceting report', $tester->getDisplay());

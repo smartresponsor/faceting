@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\ValueObject;
+namespace App\Faceting\Tests\Unit\ValueObject\Definition\Facet;
 
-use App\Faceting\ValueObject\Facet\FacetCode;
+use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use PHPUnit\Framework\TestCase;
 
 final class FacetCodeTest extends TestCase

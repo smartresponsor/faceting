@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Functional\Management;
+namespace App\Faceting\Tests\Functional\Management\Facet;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -11,7 +11,7 @@ final class FacetManagementFilteringTest extends WebTestCase
     public function testManagementPageUsesEngineFiltering(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/faceting/management/facets?type=range');
+        $crawler = $client->request('GET', '/facet/management/facets?type=range');
 
         self::assertResponseIsSuccessful();
         self::assertSelectorTextContains('[data-testid="facet-total"]', '1');

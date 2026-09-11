@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Report;
+namespace App\Faceting\Tests\Unit\Service\Report;
 
-use App\Faceting\Dto\Facet\FacetUpsertRequest;
-use App\Faceting\Service\Report\FacetingReportService;
-use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
+use App\Faceting\Service\Report\FacetReportService;
+use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 use PHPUnit\Framework\TestCase;
 
-final class FacetingReportServiceTest extends TestCase
+final class FacetReportServiceTest extends TestCase
 {
     public function testBuildDemoFacetReportReturnsExpectedCounts(): void
     {
-        $facetService = new class implements FacetingFacetServiceInterface {
+        $facetService = new class implements FacetServiceInterface {
             public function listDemoFacets(): array
             {
                 return [
@@ -23,13 +23,13 @@ final class FacetingReportServiceTest extends TestCase
                 ];
             }
 
-            public function materialize(FacetUpsertRequest $request): array
+            public function materialize(FacetUpsertDTO $request): array
             {
-                return [];
+                return ['code' => 'test', 'nameEntity' => 'Test', 'type' => 'term', 'visible' => true];
             }
         };
 
-        $report = (new FacetingReportService($facetService))->buildDemoFacetReport();
+        $report = (new FacetReportService($facetService))->buildDemoFacetReport();
 
         self::assertSame(3, $report['total']);
         self::assertSame(2, $report['visible']);

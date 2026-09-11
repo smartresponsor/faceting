@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Command;
+namespace App\Faceting\Tests\Unit\Command\Demo\Reset;
 
-use App\Faceting\Command\FacetingDemoResetCommand;
-use App\Faceting\ServiceInterface\Demo\FacetingDemoSeederServiceInterface;
+use App\Faceting\Command\Demo\Reset\FacetDemoResetCommand;
+use App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-final class FacetingDemoResetCommandTest extends TestCase
+final class FacetDemoResetCommandTest extends TestCase
 {
     public function testExecuteReportsReloadedFacetCount(): void
     {
-        $service = new class implements FacetingDemoSeederServiceInterface {
+        $service = new class implements FacetDemoSeederServiceInterface {
             public function replaceDemoData(): int
             {
                 return 7;
@@ -26,7 +26,7 @@ final class FacetingDemoResetCommandTest extends TestCase
             }
         };
 
-        $tester = new CommandTester(new FacetingDemoResetCommand($service));
+        $tester = new CommandTester(new FacetDemoResetCommand($service));
 
         self::assertSame(Command::SUCCESS, $tester->execute([]));
         self::assertStringContainsString('loaded 7 facets', strtolower($tester->getDisplay()));

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Listing;
+namespace App\Faceting\Tests\Unit\Service\Listing;
 
-use App\Faceting\Dto\Facet\FacetUpsertRequest;
-use App\Faceting\Dto\Listing\FacetingListingCriteria;
-use App\Faceting\Service\Listing\FacetingEngineService;
-use App\Faceting\ServiceInterface\Facet\FacetingFacetServiceInterface;
+use App\Faceting\DTO\Listing\FacetListingCriteriaDTO;
+use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
+use App\Faceting\Service\Listing\FacetEngineService;
+use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 use PHPUnit\Framework\TestCase;
 
-final class FacetingEngineServiceTest extends TestCase
+final class FacetEngineServiceTest extends TestCase
 {
     public function testResolveAppliesFilters(): void
     {
-        $facetService = new class implements FacetingFacetServiceInterface {
+        $facetService = new class implements FacetServiceInterface {
             public function listDemoFacets(): array
             {
                 return [
@@ -24,15 +24,15 @@ final class FacetingEngineServiceTest extends TestCase
                 ];
             }
 
-            public function materialize(FacetUpsertRequest $request): array
+            public function materialize(FacetUpsertDTO $request): array
             {
-                return [];
+                return ['code' => 'test', 'nameEntity' => 'Test', 'type' => 'term', 'visible' => true];
             }
         };
 
-        $service = new FacetingEngineService($facetService);
+        $service = new FacetEngineService($facetService);
 
-        $criteria = new FacetingListingCriteria();
+        $criteria = new FacetListingCriteriaDTO();
         $criteria->type = 'term';
         $criteria->visible = true;
 
@@ -52,7 +52,7 @@ final class FacetingEngineServiceTest extends TestCase
 
     public function testResolveBuildsAggregationsForUnfilteredListing(): void
     {
-        $facetService = new class implements FacetingFacetServiceInterface {
+        $facetService = new class implements FacetServiceInterface {
             public function listDemoFacets(): array
             {
                 return [
@@ -62,15 +62,15 @@ final class FacetingEngineServiceTest extends TestCase
                 ];
             }
 
-            public function materialize(FacetUpsertRequest $request): array
+            public function materialize(FacetUpsertDTO $request): array
             {
-                return [];
+                return ['code' => 'test', 'nameEntity' => 'Test', 'type' => 'term', 'visible' => true];
             }
         };
 
-        $service = new FacetingEngineService($facetService);
+        $service = new FacetEngineService($facetService);
 
-        $criteria = new FacetingListingCriteria();
+        $criteria = new FacetListingCriteriaDTO();
         $criteria->visible = null;
 
         $result = $service->resolve($criteria);

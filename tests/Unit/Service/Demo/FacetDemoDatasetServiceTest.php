@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Demo;
+namespace App\Faceting\Tests\Unit\Service\Demo;
 
-use App\Faceting\Service\Demo\FacetingDemoDatasetService;
+use App\Faceting\Service\Demo\FacetDemoDatasetService;
 use PHPUnit\Framework\TestCase;
 
-final class FacetingDemoDatasetServiceTest extends TestCase
+final class FacetDemoDatasetServiceTest extends TestCase
 {
     public function testBuildDatasetContainsDeterministicRows(): void
     {
-        $rows = (new FacetingDemoDatasetService())->buildDataset();
+        $rows = (new FacetDemoDatasetService())->buildDataset();
 
         self::assertCount(7, $rows);
         self::assertSame('brand', $rows[0]['code']);

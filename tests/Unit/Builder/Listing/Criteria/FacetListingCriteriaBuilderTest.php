@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Faceting\Tests\Unit\Listing;
+namespace App\Faceting\Tests\Unit\Builder\Listing\Criteria;
 
-use App\Faceting\Service\Listing\FacetingListingCriteriaBuilderService;
+use App\Faceting\Builder\Listing\Criteria\FacetListingCriteriaBuilder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-final class FacetingListingCriteriaBuilderServiceTest extends TestCase
+final class FacetListingCriteriaBuilderTest extends TestCase
 {
     public function testBuildFromRequestMapsQueryParameters(): void
     {
@@ -18,7 +18,7 @@ final class FacetingListingCriteriaBuilderServiceTest extends TestCase
             'search' => ' Brand ',
         ]);
 
-        $criteria = (new FacetingListingCriteriaBuilderService())->buildFromRequest($request);
+        $criteria = (new FacetListingCriteriaBuilder())->buildFromRequest($request);
 
         self::assertSame('term', $criteria->type);
         self::assertFalse($criteria->visible);
