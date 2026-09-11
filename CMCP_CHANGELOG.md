@@ -95,3 +95,12 @@ Evaluate disjunctive/alternative facet counts, numeric range buckets, bucket pag
 - Regression: PHPStan level 8 PASS; PHP-CS-Fixer check PASS (0/61 files); full Symfony pipeline PASS; unit 14/14 (50 assertions), integration 2/2 (11 assertions), functional 4/4 (27 assertions), total 20 tests / 88 assertions.
 - Doctrine mapping validation PASS with database synchronization intentionally skipped by the declared command; migration currentness PASS with no migrations to execute; production Composer manifest validation PASS.
 - This continuation closes the two advisory debts that remained after the RC integration. No new product feature or search-engine parity work was introduced.
+
+### Growth continuation — deterministic aggregation ordering
+
+- Started from `origin/master` at `e5f3e1f4be6a60ccada8ac0bb39c3b85e50f445c`, with Canon012 and Canon031 already green and no Gating warnings.
+- Selected the first bounded post-RC maturity increment: deterministic aggregation bucket ordering without changing Faceting ownership or public typed contracts.
+- `FacetEngineService` now orders buckets by count descending and then key ascending when counts tie, eliminating insertion-order-dependent results.
+- Added unit coverage for equal-count type and visibility buckets; README documents the ordering guarantee.
+- Verification: unit suite PASS (15 tests / 52 assertions), PHPStan level 8 PASS, full Symfony pipeline PASS (21 tests / 90 assertions), Gating PASS with 0 failures and 0 warnings.
+- Remaining growth track after this increment: alternative/disjunctive counts, numeric range bucket semantics, bucket pagination/limits, and backend aggregation strategy abstraction.

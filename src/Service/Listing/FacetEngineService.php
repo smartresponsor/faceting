@@ -89,8 +89,8 @@ final class FacetEngineService implements FacetEngineServiceInterface
             $visibilityCounts[$visibility] = ($visibilityCounts[$visibility] ?? 0) + 1;
         }
 
-        arsort($typeCounts);
-        arsort($visibilityCounts);
+        $this->sortBucketCounts($typeCounts);
+        $this->sortBucketCounts($visibilityCounts);
 
         foreach ($typeCounts as $key => $count) {
             $bucket = new FacetAggregationBucketDTO();
@@ -107,5 +107,22 @@ final class FacetEngineService implements FacetEngineServiceInterface
         }
 
         return $aggregation;
+    }
+
+    /**
+     * Orders bucket counts by descending count and then ascending key for deterministic ties.
+     *
+     * @param array<string, int> $counts
+     */
+    private function sortBucketCounts(array &$counts): void
+    {
+        uksort(
+            $counts,
+            static function (string $left, string $right) use ($counts): int {
+                $countComparison = $counts[$right] <=> $counts[$left];
+
+                return 0 !== $countComparison ? $countComparison : $left <=> $right;
+            },
+        );
     }
 }
