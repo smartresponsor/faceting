@@ -21,7 +21,7 @@ final readonly class FacetManagementResponder
     public function respond(Request $request): Response
     {
         $payload = $this->surfaceBuilder->build($request);
-        $data = $payload['data'] ?? [];
+        $data = $payload->data;
         if (($data['materializedFacet'] ?? null) !== null && $request->hasSession()) {
             $flashBag = $request->getSession()->getBag('flashes');
             if ($flashBag instanceof FlashBagInterface) {
@@ -30,9 +30,9 @@ final readonly class FacetManagementResponder
         }
 
         return new Response($this->twig->render('facet_management/index.html.twig', $data + [
-            '_view' => $payload['_view'] ?? [],
-            'locations' => $payload['locations'] ?? [],
-            'meta' => $payload['meta'] ?? [],
+            '_view' => $payload->view,
+            'locations' => $payload->locations,
+            'meta' => $payload->meta,
         ]));
     }
 }

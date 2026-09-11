@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Faceting\Tests\Unit\Service\Listing;
 
 use App\Faceting\DTO\Listing\FacetListingCriteriaDTO;
+use App\Faceting\DTO\Management\Facet\FacetCollectionDTO;
+use App\Faceting\DTO\Management\Facet\FacetItemDTO;
 use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
 use App\Faceting\Service\Listing\FacetEngineService;
 use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
@@ -15,18 +17,18 @@ final class FacetEngineServiceTest extends TestCase
     public function testResolveAppliesFilters(): void
     {
         $facetService = new class implements FacetServiceInterface {
-            public function listDemoFacets(): array
+            public function listDemoFacets(): FacetCollectionDTO
             {
-                return [
-                    ['code' => 'brand', 'nameEntity' => 'Brand', 'type' => 'term', 'visible' => true],
-                    ['code' => 'price', 'nameEntity' => 'Price', 'type' => 'range', 'visible' => true],
-                    ['code' => 'hidden', 'nameEntity' => 'Hidden', 'type' => 'term', 'visible' => false],
-                ];
+                return new FacetCollectionDTO([
+                    new FacetItemDTO('brand', 'Brand', 'term', true),
+                    new FacetItemDTO('price', 'Price', 'range', true),
+                    new FacetItemDTO('hidden', 'Hidden', 'term', false),
+                ]);
             }
 
-            public function materialize(FacetUpsertDTO $request): array
+            public function materialize(FacetUpsertDTO $request): FacetItemDTO
             {
-                return ['code' => 'test', 'nameEntity' => 'Test', 'type' => 'term', 'visible' => true];
+                return new FacetItemDTO('test', 'Test', 'term', true);
             }
         };
 
@@ -53,18 +55,18 @@ final class FacetEngineServiceTest extends TestCase
     public function testResolveBuildsAggregationsForUnfilteredListing(): void
     {
         $facetService = new class implements FacetServiceInterface {
-            public function listDemoFacets(): array
+            public function listDemoFacets(): FacetCollectionDTO
             {
-                return [
-                    ['code' => 'brand', 'nameEntity' => 'Brand', 'type' => 'term', 'visible' => true],
-                    ['code' => 'price', 'nameEntity' => 'Price', 'type' => 'range', 'visible' => true],
-                    ['code' => 'hidden', 'nameEntity' => 'Hidden', 'type' => 'term', 'visible' => false],
-                ];
+                return new FacetCollectionDTO([
+                    new FacetItemDTO('brand', 'Brand', 'term', true),
+                    new FacetItemDTO('price', 'Price', 'range', true),
+                    new FacetItemDTO('hidden', 'Hidden', 'term', false),
+                ]);
             }
 
-            public function materialize(FacetUpsertDTO $request): array
+            public function materialize(FacetUpsertDTO $request): FacetItemDTO
             {
-                return ['code' => 'test', 'nameEntity' => 'Test', 'type' => 'term', 'visible' => true];
+                return new FacetItemDTO('test', 'Test', 'term', true);
             }
         };
 

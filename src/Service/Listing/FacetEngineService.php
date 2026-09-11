@@ -20,16 +20,16 @@ final class FacetEngineService implements FacetEngineServiceInterface
 
     public function resolve(FacetListingCriteriaDTO $criteria): FacetListingResultDTO
     {
-        $items = $this->facetService->listDemoFacets();
+        $items = $this->facetService->listDemoFacets()->items;
 
         $filtered = [];
 
         foreach ($items as $item) {
-            if (null !== $criteria->type && $item['type'] !== $criteria->type) {
+            if (null !== $criteria->type && $item->type !== $criteria->type) {
                 continue;
             }
 
-            if (null !== $criteria->visible && $item['visible'] !== $criteria->visible) {
+            if (null !== $criteria->visible && $item->visible !== $criteria->visible) {
                 continue;
             }
 
@@ -37,14 +37,19 @@ final class FacetEngineService implements FacetEngineServiceInterface
                 $needle = strtolower($criteria->search);
 
                 if (
-                    !str_contains(strtolower($item['code']), $needle)
-                    && !str_contains(strtolower($item['nameEntity']), $needle)
+                    !str_contains(strtolower($item->code), $needle)
+                    && !str_contains(strtolower($item->nameEntity), $needle)
                 ) {
                     continue;
                 }
             }
 
-            $filtered[] = $item;
+            $filtered[] = [
+                'code' => $item->code,
+                'nameEntity' => $item->nameEntity,
+                'type' => $item->type,
+                'visible' => $item->visible,
+            ];
         }
 
         $result = new FacetListingResultDTO();

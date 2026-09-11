@@ -27,13 +27,13 @@ final class FacetReportCommand extends Command
 
         $io->title('Faceting report');
         $io->definitionList(
-            ['Total facets' => (string) $report['total']],
-            ['Visible facets' => (string) $report['visible']],
-            ['Hidden facets' => (string) $report['hidden']],
+            ['Total facets' => (string) $report->total],
+            ['Visible facets' => (string) $report->visible],
+            ['Hidden facets' => (string) $report->hidden],
         );
 
         $rows = [];
-        foreach ($report['byType'] as $type => $count) {
+        foreach ($report->byType as $type => $count) {
             $rows[] = [$type, (string) $count];
         }
 
