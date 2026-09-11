@@ -12,14 +12,23 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'app:faceting:report')]
+/**
+ * Renders the typed Faceting demo report as a concise console summary and table.
+ */
 final class FacetReportCommand extends Command
 {
+    /**
+     * Initializes the reporting command with the component report service contract.
+     */
     public function __construct(
         private readonly FacetReportServiceInterface $facetingReportService,
     ) {
         parent::__construct();
     }
 
+    /**
+     * Builds the demo report and writes totals plus type counts to the console.
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

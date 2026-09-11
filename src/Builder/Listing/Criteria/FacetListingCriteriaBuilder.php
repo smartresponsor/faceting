@@ -8,8 +8,14 @@ use App\Faceting\BuilderInterface\Listing\Criteria\FacetListingCriteriaBuilderIn
 use App\Faceting\DTO\Listing\FacetListingCriteriaDTO;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Builds typed facet listing criteria from HTTP query parameters for listing operations.
+ */
 final class FacetListingCriteriaBuilder implements FacetListingCriteriaBuilderInterface
 {
+    /**
+     * Converts supported request query parameters into the canonical listing criteria DTO.
+     */
     public function buildFromRequest(Request $request): FacetListingCriteriaDTO
     {
         $criteria = new FacetListingCriteriaDTO();

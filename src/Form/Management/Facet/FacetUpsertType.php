@@ -13,8 +13,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Defines the Symfony management form used to validate facet upsert input.
+ */
 final class FacetUpsertType extends AbstractType
 {
+    /**
+     * Adds the supported facet definition fields and preview submit action to the form.
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -32,6 +38,9 @@ final class FacetUpsertType extends AbstractType
             ->add('submit', SubmitType::class, ['label' => 'Preview facet']);
     }
 
+    /**
+     * Binds submitted form data to the canonical typed facet upsert DTO.
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

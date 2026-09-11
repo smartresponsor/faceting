@@ -11,13 +11,22 @@ use App\Faceting\DTO\Listing\FacetListingResultDTO;
 use App\Faceting\ServiceInterface\Listing\FacetEngineServiceInterface;
 use App\Faceting\ServiceInterface\Management\Facet\FacetServiceInterface;
 
+/**
+ * Applies facet listing criteria and derives typed aggregation buckets for presentation consumers.
+ */
 final class FacetEngineService implements FacetEngineServiceInterface
 {
+    /**
+     * Initializes the listing engine with the Faceting service that supplies available facet rows.
+     */
     public function __construct(
         private readonly FacetServiceInterface $facetService,
     ) {
     }
 
+    /**
+     * Filters available facets by typed criteria and returns rows plus aggregation metadata.
+     */
     public function resolve(FacetListingCriteriaDTO $criteria): FacetListingResultDTO
     {
         $items = $this->facetService->listDemoFacets()->items;
@@ -61,6 +70,8 @@ final class FacetEngineService implements FacetEngineServiceInterface
     }
 
     /**
+     * Counts facet type and visibility dimensions for the already filtered listing rows.
+     *
      * @param list<array{code:string,nameEntity:string,type:string,visible:bool}> $items
      */
     private function buildAggregations(array $items): FacetAggregationResultDTO
