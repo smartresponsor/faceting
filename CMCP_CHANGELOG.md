@@ -152,3 +152,24 @@ Complete the config-prefix migration across authoritative Faceting documentation
 - `composer validate:prod`: PASS.
 - `composer validate --strict --check-lock`: manifest/lock structurally valid; non-zero exit is limited to the existing unbound local `*@dev` sibling dependency warnings.
 - `composer gating` and the Console MCP `gating` check are BLOCKED before rule execution because baseline `.gating/config/profile.yaml` is absent in the pre-existing shared-tooling dirty state. No Faceting-owned change caused or repaired that tooling drift.
+
+Что имеем? All independent Faceting runtime/static/test gates are green; Gating is externally blocked by the baseline `.gating` profile deletion.
+Что осталось? Commit and push only the Faceting-owned files, leaving all pre-existing `.gating` changes untouched, then inspect remote integration and final repository state.
+
+### Iteration 4 — debt closure and integration
+
+- Explicitly staged only the seven Faceting-owned files; no `.gating` path entered the index.
+- Created signed commit `6530f1987d93b8148e7230f99fcb4f4457e00b36` (`fix: align faceting config metadata`).
+- Commit hook re-ran PHP-CS-Fixer on the staged PHP test and found no changes required.
+- `git push` through Console MCP was blocked by the repository safety guard because the worktree remains dirty with the same 15 pre-existing `.gating` entries. The branch is one commit ahead of its upstream.
+- No `.gating` file was staged, reverted, moved, or otherwise mutated to bypass the guard. A PR cannot truthfully include the new commit until that commit is published.
+
+Что имеем? The bounded Faceting fix is committed and isolated; remote publication is blocked only by preserved pre-existing tooling drift.
+Что осталось? Re-run acceptance on committed HEAD, record final branch/upstream state, and hand off the exact integration blocker.
+
+### Iteration 5 — final acceptance and handoff
+
+- Re-ran `composer pipeline:local:full` on committed HEAD: PASS; PHP/YAML/Twig/container lint and unit/integration/functional suites are green, total 26 tests / 105 assertions.
+- Re-ran `composer phpstan`: PASS at level 8 with no errors.
+- Re-ran `composer cs:check`: PASS, 0 of 62 files require fixes.
+- Gating remains non-executable because `.gating/config/profile.yaml` is absent in the baseline shared-tooling dirty state; both Composer and Console MCP gate paths independently confirmed the same blocker before rule execution.
