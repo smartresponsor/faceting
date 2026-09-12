@@ -25,4 +25,4 @@ service_rules:
   service_suffix: Service
 
 configuration_rules:
-  config_prefix: faceting_
+  config_prefix: facet_

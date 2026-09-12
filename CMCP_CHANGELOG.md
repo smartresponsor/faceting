@@ -104,3 +104,51 @@ Evaluate disjunctive/alternative facet counts, numeric range buckets, bucket pag
 - Added unit coverage for equal-count type and visibility buckets; README documents the ordering guarantee.
 - Verification: unit suite PASS (15 tests / 52 assertions), PHPStan level 8 PASS, full Symfony pipeline PASS (21 tests / 90 assertions), Gating PASS with 0 failures and 0 warnings.
 - Remaining growth track after this increment: alternative/disjunctive counts, numeric range bucket semantics, bucket pagination/limits, and backend aggregation strategy abstraction.
+
+## engine-20260912080230-faceting-873026
+
+### Iteration 1 — reconnaissance and baseline
+
+- Execution plane: Console MCP against `D:\PhpstormProjects\www\Faceting`; sibling repositories are read-only contract sources.
+- Branch baseline: `growth/faceting-deterministic-buckets` at `ec9160a87fac90abb293bc64816b16476830bc09`, aligned with `origin/growth/faceting-deterministic-buckets`.
+- Existing dirty state is confined to `.gating/` (15 entries). It is treated as shared/tooling drift and is not adopted into this Faceting change set without explicit provenance; product files are otherwise clean at baseline.
+- Target contracts read: `AGENTS.md`, `README.md`, `composer.json`, `composer.prod.json`, architecture/product/CLI manifestos, active Faceting manifests, listing engine DTO/service/tests, PHPUnit configuration, Git branch/status, and prior CMCP journal.
+- Mandatory application dependency contour read: Objecting, Cruding, Viewing, and Interfacing `AGENTS.md`, `README.md`, and `composer.json`; Faceting declares all four in development and production, with local path repositories and symlinks in development.
+- Canonization consulted as normative text: architecture README plus Canon000, Canon001, Canon002, Canon003, Canon010, Canon012, Canon017, Canon019, Canon038, and the guard matrix. Gating root contracts were read as the executable enforcement companion.
+- Target-to-canon mapping: `Faceting -> Facet*`; role-first topology; mirrored typed interfaces; explicit `DTO`; no alternative architecture roots; stable internal contracts remain typed; completed renames must update docs/manifests; active docs must match runtime; component-owned YAML filenames derive the `facet_` prefix from package subject token `faceting/facet`.
+- Concrete drift found: runtime configuration already uses canonical `facet_*` filenames, but `ARCHITECTURE_MANIFESTO.md`, `README.md`, `manifest/faceting.acceptance-gates.yaml`, `manifest/faceting.canon.yaml`, and `manifest/faceting.non_normative.examples.yaml` still teach the superseded `faceting_` prefix / filenames.
+- Market baseline: mature faceting systems expose deterministic bucket counts/order as a baseline and add capabilities such as range facets, facet-value limits/search, alternative/disjunctive counts, and scalable aggregation strategies. These remain growth work unless correctness requires them.
+
+### Selected RC-critical workstream
+
+Complete the config-prefix migration across authoritative Faceting documentation/manifests, add a regression assertion that current active metadata cannot reintroduce the retired `faceting_` config-filename convention, then run targeted and full repository gates without absorbing unrelated `.gating/` drift.
+
+### Growth track (non-blocking)
+
+- Alternative/disjunctive counts after an active facet filter.
+- Numeric/range bucket semantics and explicit bucket limits/pagination.
+- Backend aggregation strategy abstraction for larger datasets.
+
+Что имеем? Current runtime is already on `facet_*`; the remaining defect is authoritative metadata drift.
+Что осталось? Patch the active metadata, add the regression guard, verify gates, integrate only Faceting-owned files, and perform final acceptance.
+
+### Iteration 2 — material implementation
+
+- Updated active repository metadata from the retired `faceting_` config-filename convention to canonical `facet_` in README, architecture manifesto, acceptance gates, and canon manifest.
+- Refreshed non-normative path examples to match the current role-first `Management/Facet` and `ValueObject/Definition/Facet` topology and `config/services/facet_services.yaml`.
+- Added `FacetConfigurationConventionTest` to prevent active metadata from reintroducing the retired `faceting_` convention.
+
+Что имеем? Runtime and active metadata now encode one `facet_*` model.
+Что осталось? Run full verification, repair deterministic failures, then integrate the bounded change set.
+
+### Iteration 3 — verification and fix
+
+- `composer test:unit`: PASS, 20 tests / 67 assertions.
+- `composer phpstan`: PASS at level 8 across `src` and `tests`.
+- `composer cs:check`: initially failed only on formatter-owned line endings/comment alignment in the new test; `composer cs:fix` repaired that file and the re-run passed.
+- `composer pipeline:local:full`: PASS; PHP/YAML/Twig/container lint plus unit/integration/functional suites green, total 26 tests / 105 assertions.
+- `composer doctrine:schema:validate`: PASS for mapping; database sync intentionally skipped by the declared command.
+- `composer doctrine:migrations:currentness`: PASS, no migrations to execute.
+- `composer validate:prod`: PASS.
+- `composer validate --strict --check-lock`: manifest/lock structurally valid; non-zero exit is limited to the existing unbound local `*@dev` sibling dependency warnings.
+- `composer gating` and the Console MCP `gating` check are BLOCKED before rule execution because baseline `.gating/config/profile.yaml` is absent in the pre-existing shared-tooling dirty state. No Faceting-owned change caused or repaired that tooling drift.
