@@ -187,3 +187,15 @@ Complete the config-prefix migration across authoritative Faceting documentation
 
 Что имеем? Faceting's own Gating integration, unit coverage contract, static analysis, and unit regression surface are green; the former dirty-worktree blocker is resolved.
 Что осталось? Commit this bounded Faceting hardening, push the clean branch, then perform remote/PR integration. The only runtime verification tail is the independently broken Cruding sibling.
+
+### Continuous RC execution — final cross-component acceptance
+
+- The apparent Cruding blocker was transient workspace drift during its active canonization wave. Current Cruding `config/services.yaml` no longer imports the retired `src/Dispatcher/` or `src/Routing/` roots, so no sibling mutation was required from the Faceting task.
+- Re-ran `composer pipeline:local:full`: PASS; PHP/YAML/Twig/container lint plus unit/integration/functional suites are green (24 unit / 85 assertions, 3 integration / 15 assertions, 4 functional / 27 assertions).
+- Added behavior-level repository coverage for immediate-flush `save(..., true)` / `remove(..., true)` and persisted-facet precedence in `FacetService::listDemoFacets()`.
+- Re-ran canonical coverage: PASS, 31 tests / 127 assertions. Canon040 now passes at lines 90.6%, methods 80.3%, branches 88.5%.
+- Re-ran Gating: 56 rules, 0 failed, 0 warnings, 0 suppressed; Canon039 and Canon040 both pass.
+- Re-ran PHPStan level 8 and PHP-CS-Fixer check: PASS.
+
+Что имеем? Faceting has a fully green local RC acceptance surface, including cross-component Symfony bootstrap and all current Gating coverage thresholds.
+Что осталось? Commit/publish this final coverage closure and merge it into `master`; no known Faceting RC blocker remains.
