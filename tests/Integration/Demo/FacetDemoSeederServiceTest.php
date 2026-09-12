@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Faceting\Tests\Integration\Demo;
 
 use App\Faceting\Entity\Facet;
+use App\Faceting\Enum\FacetType;
 use App\Faceting\Repository\FacetRepository;
 use App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface;
+use App\Faceting\ValueObject\Definition\Facet\FacetCode;
+use App\Faceting\ValueObject\Definition\Facet\FacetName;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -41,6 +44,23 @@ final class FacetDemoSeederServiceTest extends KernelTestCase
         self::assertSame(7, $seeder->replaceDemoData());
         self::assertCount(6, $repository->findOrderedVisibleFacets());
         self::assertSame(7, $seeder->clearAll());
+        self::assertCount(0, $repository->findOrderedVisibleFacets());
+    }
+
+    public function testRepositoryCanFlushSaveAndRemoveImmediately(): void
+    {
+        $repository = static::getContainer()->get(FacetRepository::class);
+        self::assertInstanceOf(FacetRepository::class, $repository);
+
+        $facet = new Facet(
+            new FacetCode('integration'),
+            new FacetName('Integration'),
+            FacetType::Term,
+        );
+
+        $repository->save($facet, true);
+        self::assertCount(1, $repository->findOrderedVisibleFacets());
+        $repository->remove($facet, true);
         self::assertCount(0, $repository->findOrderedVisibleFacets());
     }
 
