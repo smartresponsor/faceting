@@ -1,8 +1,0 @@
-# Faceting Gating severity policy.
-severity:
-  default: error
-  rules:
-    inventory.component_surface: info
-    release.evidence_manifest: warning
-    documentation.docblock_preservation: warning
-    mutation.safety: warning

@@ -8,5 +8,5 @@ acceptance_gates:
   - no Domain directory exists
   - no service interface exists under src/Service
   - all component-local services use Facet*Service naming
-  - config files use faceting_ prefix
+  - config files use facet_ prefix
   - logs and reports are used to drive fixes

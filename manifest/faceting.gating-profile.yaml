@@ -9,6 +9,7 @@ component:
     - Facet
   typed_layers_required: true
   service_interface_mirror: true
+  mutation_mode: forbidden
 subject_prefix: Facet
 typed_boundary_internal_roots:
   - Service

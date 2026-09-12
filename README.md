@@ -9,7 +9,7 @@ Core invariant:
 - no component wrapper folders inside the code tree
 - `src/Service/...` for implementations
 - `src/ServiceInterface/...` for interfaces
-- `faceting_` config prefix under `config/`
+- `facet_` config prefix under `config/`
 
 Current vertical slice:
 
