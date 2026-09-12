@@ -20,4 +20,11 @@ final class FacetCodeTest extends TestCase
 
         new FacetCode('Brand Name');
     }
+
+    public function testItRejectsEmptyCode(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        new FacetCode('   ');
+    }
 }

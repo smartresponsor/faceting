@@ -62,13 +62,17 @@
     "cs:check": "php-cs-fixer fix --dry-run --diff --verbose",
     "cs:fix": "php-cs-fixer fix --verbose",
     "phpstan": "phpstan analyse src tests --level=8 --memory-limit=1G",
-    "gating": "gating check --target=. --profile=.gating/config/profile.yaml",
+    "gating": "gating check --target=. --profile=manifest/faceting.gating-profile.yaml --policy-root=vendor/gating/gate/.gating",
     "validate:prod": "php -r \"json_decode(file_get_contents('composer.prod.json'), true, 512, JSON_THROW_ON_ERROR);\"",
     "doctrine:schema:validate": "php bin/console doctrine:schema:validate --skip-sync",
     "doctrine:migrations:currentness": "php bin/console doctrine:migrations:up-to-date --no-interaction",
     "test:unit": "phpunit --testsuite unit",
     "test:integration": "phpunit --testsuite integration",
     "test:functional": "phpunit --testsuite functional",
+    "test:coverage": [
+      "php -r \"is_dir('var/coverage') || mkdir('var/coverage', 0777, true);\"",
+      "php -d xdebug.mode=coverage vendor/bin/phpunit --path-coverage --coverage-text=var/coverage/summary.txt"
+    ],
     "test": [
       "@test:unit",
       "@test:integration",

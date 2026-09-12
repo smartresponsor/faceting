@@ -173,3 +173,17 @@ Complete the config-prefix migration across authoritative Faceting documentation
 - Re-ran `composer phpstan`: PASS at level 8 with no errors.
 - Re-ran `composer cs:check`: PASS, 0 of 62 files require fixes.
 - Gating remains non-executable because `.gating/config/profile.yaml` is absent in the baseline shared-tooling dirty state; both Composer and Console MCP gate paths independently confirmed the same blocker before rule execution.
+
+### Continuous RC execution — integration tail closure
+
+- Classified the 15-entry `.gating` dirty baseline as a coherent embedded Gating synchronization wave: Canon039/040 tooling, registry/calibration updates, PHPUnit owner tooling, and retirement of the former embedded root profile/severity files.
+- Verified standalone `D:\PhpstormProjects\www\Gating` is clean and the embedded calibration suite passes.
+- Accepted the tooling wave in signed commit `b6eaf88` (`chore: sync embedded gating tooling`), isolating it from Faceting product changes.
+- Moved Faceting's consumer-specific profile to `manifest/faceting.gating-profile.yaml` and bound the Composer `gating` script to the installed `gating/gate` policy root rather than the retired embedded `.gating/config/profile.yaml` path.
+- Added canonical PHPUnit coverage execution (`test:coverage`) with Xdebug path coverage and persistent `var/coverage/summary.txt` evidence preparation.
+- Added direct Facet Entity lifecycle/state tests and the missing FacetCode/FacetName validation branches. Unit suite is green at 23 tests / 80 assertions; PHPStan level 8 is green.
+- Gating now executes 56 rules with 0 failures. Canon039 is green. Canon040 remains advisory; the latest coverage evidence is partial because the full coverage run is currently blocked by a sibling Cruding runtime regression.
+- Current external blocker: local Cruding service configuration imports missing source directories (`src/Routing/` and previously `src/Dispatcher/`). Consequently Faceting integration/functional bootstrap and `pipeline:local:full` cannot complete in the current shared workspace state. This is outside the Faceting write boundary.
+
+Что имеем? Faceting's own Gating integration, unit coverage contract, static analysis, and unit regression surface are green; the former dirty-worktree blocker is resolved.
+Что осталось? Commit this bounded Faceting hardening, push the clean branch, then perform remote/PR integration. The only runtime verification tail is the independently broken Cruding sibling.

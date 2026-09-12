@@ -20,4 +20,11 @@ final class FacetNameTest extends TestCase
 
         new FacetName('   ');
     }
+
+    public function testItRejectsOverlongFacetName(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        new FacetName(str_repeat('a', 256));
+    }
 }
