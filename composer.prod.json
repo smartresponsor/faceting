@@ -22,10 +22,12 @@
     "symfony/twig-bundle": "^8.1",
     "symfony/validator": "^8.1",
     "symfony/yaml": "^8.1",
+    "collectioning/collection": "*",
     "cruding/crud": "*",
     "easycorp/easyadmin-bundle": "^5.5",
     "interfacing/interface": "*",
     "objecting/object": "*",
+    "tabling/table": "*",
     "viewing/view": "*"
   },
   "autoload": {
