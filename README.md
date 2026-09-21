@@ -25,3 +25,8 @@ Current vertical slice:
 - CLI report, fixtures load, cleanup and demo reset surfaces
 - unit coverage for normalization, dataset and reporting
 - deterministic aggregation bucket ordering: count descending, then key ascending for ties
+- stable facet/value identifiers separated from labels and catalog-owned external references
+- typed facet eligibility and multi-select `Any`/`All` filter semantics
+- numeric and immutable date range filter contracts with explicit bound inclusivity
+- locale-normalized label and neutral ordering metadata contracts
+- backend-neutral aggregation request/result/count contracts; Searching executes queries and Indexing builds index structures

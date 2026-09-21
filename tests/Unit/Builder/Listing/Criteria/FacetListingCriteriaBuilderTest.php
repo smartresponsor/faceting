@@ -10,6 +10,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class FacetListingCriteriaBuilderTest extends TestCase
 {
+    public function testBuildFromEmptyRequestUsesCanonicalDefaults(): void
+    {
+        $criteria = (new FacetListingCriteriaBuilder())->buildFromRequest(new Request());
+
+        self::assertNull($criteria->type);
+        self::assertTrue($criteria->visible);
+        self::assertNull($criteria->search);
+    }
+
     public function testBuildFromRequestMapsQueryParameters(): void
     {
         $request = new Request([

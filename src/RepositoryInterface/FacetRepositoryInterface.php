@@ -27,4 +27,16 @@ interface FacetRepositoryInterface
      * Removes a facet and optionally flushes the current Doctrine unit of work.
      */
     public function remove(Facet $facet, bool $flush = false): void;
+
+    /**
+     * Returns all facets for bounded maintenance operations.
+     *
+     * @return list<Facet>
+     */
+    public function findAllFacets(): array;
+
+    /**
+     * Flushes pending facet persistence and optionally clears the Doctrine unit of work.
+     */
+    public function flush(bool $clear = false): void;
 }

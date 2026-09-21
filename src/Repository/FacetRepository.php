@@ -29,8 +29,8 @@ class FacetRepository extends ServiceEntityRepository implements FacetRepository
         return $this->createQueryBuilder('facet')
             ->andWhere('facet.visible = :visible')
             ->setParameter('visible', true)
-            ->orderBy('facet.position', 'ASC')
-            ->addOrderBy('facet.nameEntity', 'ASC')
+            ->orderBy('facet.position', \SortDirection::Ascending)
+            ->addOrderBy('facet.nameEntity', \SortDirection::Ascending)
             ->getQuery()
             ->getResult();
     }
@@ -56,6 +56,31 @@ class FacetRepository extends ServiceEntityRepository implements FacetRepository
 
         if ($flush) {
             $this->getEntityManager()->flush();
+        }
+    }
+
+    /**
+     * Returns all persisted facets for bounded maintenance operations.
+     *
+     * @return list<Facet>
+     */
+    public function findAllFacets(): array
+    {
+        /** @var list<Facet> $facets */
+        $facets = $this->findAll();
+
+        return $facets;
+    }
+
+    /**
+     * Flushes pending facet persistence and optionally clears the Doctrine unit of work.
+     */
+    public function flush(bool $clear = false): void
+    {
+        $this->getEntityManager()->flush();
+
+        if ($clear) {
+            $this->getEntityManager()->clear();
         }
     }
 }

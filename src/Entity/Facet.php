@@ -5,23 +5,16 @@ declare(strict_types=1);
 namespace App\Faceting\Entity;
 
 use App\Faceting\Enum\FacetType;
-use App\Faceting\Repository\FacetRepository;
 use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use App\Faceting\ValueObject\Definition\Facet\FacetName;
 use App\Objecting\EntityInterface\ObjectAuditedInterface;
 use App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FacetRepository::class)]
-#[ORM\Table(
-    name: 'facet',
-    uniqueConstraints: [
-        new ORM\UniqueConstraint(name: 'uniq_facet_code', columns: ['code']),
-    ],
-    indexes: [
-        new ORM\Index(name: 'idx_facet_visible_position', columns: ['visible', 'position']),
-    ],
-)]
+#[ORM\Entity]
+#[ORM\Table(name: 'facet')]
+#[ORM\UniqueConstraint(name: 'uniq_facet_code', columns: ['code'])]
+#[ORM\Index(name: 'idx_facet_visible_position', columns: ['visible', 'position'])]
 /**
  * Represents the persistent facet definition together with its canonical audit lifecycle state.
  */

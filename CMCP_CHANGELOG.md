@@ -245,3 +245,45 @@ Close Canon022/041/043/045 deterministically, materialize reproducible Canon042 
 
 Что имеем? Faceting-owned Canon022/031/041/043/045 work is complete, Composer/PHPStan/unit/style/security gates are green, and Gating has zero hard failures.
 Что осталось? The RC evidence warnings can close only after the Cruding↔Tabling master contract is repaired in its owning repository; then rerun integration/functional/UI/coverage and the declared behavioral evidence producer.
+
+## engine-20260921020651-faceting-c5efc9
+
+### Reconnaissance and baseline
+
+- Execution plane: Console MCP against `D:\\PhpstormProjects\\www\\Faceting`; sibling repositories remain read-only contract sources.
+- Current branch: `hardening/faceting-canon040-acceptance` at `5be1a721ef138fec27c363c272083f5c75099822`, ahead of its upstream by one commit. The worktree contains a pre-existing embedded `.gating/` synchronization wave plus Composer/bundle/Playwright changes and untracked audit/UI artifacts; none are reverted or silently adopted.
+- Target read: `AGENTS.md`, `README.md`, development Composer manifest, `PRODUCT_CAPABILITY_AUDIT.adoc`, current Facet Entity/value objects/listing DTOs/builders/services/tests, Gating profile, Playwright configuration, Git state, prior execution journal and configured scripts.
+- Mandatory dependency contour read: Objecting, Cruding, Viewing, and Interfacing `AGENTS.md`, `README.md`, and `composer.json`; Faceting declares the canonical standalone dependency contour through local `dev-master` path repositories.
+- Canonization consulted as normative text: guard matrix and rules journal plus Canon001, Canon003, Canon004, Canon012, Canon017, Canon022, Canon041, Canon042, Canon043, Canon044 and Canon045. Gating remains the executable mirror.
+- Target-to-canon mapping: keep role-first Symfony topology under `App\\Faceting\\`; new transfer contracts use explicit `*DTO` types; stable internal boundaries stay typed; active documentation must describe runtime; Objecting lifecycle fields are consumed through `ObjectAuditEmbeddableTrait` and must not be duplicated locally; standalone dependency/test contracts remain unchanged.
+- Product boundary mapping: Faceting owns facet/value/filter semantics and neutral aggregation contracts. Searching executes queries, Indexing builds index structures, Cataloging owns catalog master data/taxonomy, and Viewing/Interfacing own presentation. Faceting must not introduce backend search execution or taxonomy persistence.
+- Current product baseline: `Facet` already uses the Objecting audit pack correctly and the prior local timestamp duplication is gone. Existing listing code has facet-definition filtering and deterministic counts, but there is no canonical typed facet-value contract, stable facet-value identifier contract, or reusable applied-filter contract. `PRODUCT_CAPABILITY_AUDIT.adoc` therefore still has M1 incomplete.
+- Market/open-source baseline: mature commerce/search faceting uses stable facet/value keys, explicit filter eligibility, multi-value selection semantics, range predicates and counted aggregation buckets while keeping engine-specific query execution outside the semantic contract. RC implementation will establish the semantic contracts first; engine adapters remain outside Faceting.
+
+### Selected RC-critical workstream
+
+Implement M1 canonical facet/value/filter contracts with stable identifiers and explicit filterability/searchability semantics, prove them through unit/static/Gating checks, and update the product audit without introducing search execution or sibling persistence coupling.
+
+### Growth track (non-blocking)
+
+- M2: multi-select composition, numeric/date range contracts, localization and deterministic ordering metadata.
+- M3: neutral aggregation/count exchange contracts consumable by Indexing/Searching plus storefront acceptance with Cataloging/Retailing.
+
+Что имеем? The first factual product gap is M1 contracts, not Objecting cleanup.
+Что осталось? Implement the M1 types/tests, run deterministic gates, repair in-scope failures, then continue to M2 while the repository remains green.
+
+### Implementation and verification
+
+- M1 complete in Faceting: added stable `FacetValueIdentifier`, typed definition/value contracts, filterable/searchable eligibility and `FacetFilterDTO` with explicit `Any`/`All` multi-select semantics.
+- M2 complete in Faceting: added numeric/date range filter contracts, normalized localized-label contract and deterministic non-negative position metadata.
+- M3 contract complete in Faceting: added backend-neutral aggregation request, stable-value bucket and result/count contracts. No search or index executor was introduced.
+- Canon hardening completed while implementing the audit: removed the project repository dependency from `Facet`; moved Doctrine manager operations behind `FacetRepositoryInterface`; migrated Doctrine mapping to class-level `UniqueConstraint`/`Index`; replaced deprecated string sort directions with `SortDirection`.
+- `PRODUCT_CAPABILITY_AUDIT.adoc` now reflects implemented M1/M2 and M3 contract status; Objecting duplication debt was corrected as stale because `Facet` already consumes `ObjectAuditEmbeddableTrait`.
+- Cross-component acceptance reconnaissance: Searching, Indexing, Cataloging and Retailing currently declare neither `faceting/facet` nor imports under `App\\Faceting\\`. Their consumer/storefront integration therefore cannot be truthfully completed inside the Faceting write boundary; it remains an owning-repository integration tail.
+- Full Symfony pipeline PASS: PHP/YAML/Twig/container lint, 59 unit tests, 3 integration tests and 4 functional tests. Dedicated coverage run PASS: 66 tests / 183 assertions; Canon040 evidence 93.6% lines, 82.3% methods, 84.9% branches.
+- Behavioral evidence PASS: integration 3/3, functional 4/4 and Playwright 2/2 real-browser flows; Canon042 functional 2/2, behavioral 2/2, UI 2/2 and critical 1/1.
+- Static/release checks PASS: PHPStan level 8, PHP-CS-Fixer dry run, Composer strict/check-lock validation, Composer security audit, Doctrine mapping validation and migration currentness, production manifest JSON validation.
+- Final Gating result for this pass: 65 rules, 0 failed, 0 warning, 0 suppressed, 8 skipped.
+
+Что имеем? Faceting-owned M1/M2 and M3 contract work is production-implemented and all local deterministic/behavioral gates are green.
+Что осталось? Consumer/storefront adoption and acceptance must be implemented in Searching/Indexing/Cataloging/Retailing because those repositories currently have no Faceting dependency; preserve that cross-repository tail rather than duplicating it locally.

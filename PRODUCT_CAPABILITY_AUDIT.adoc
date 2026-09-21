@@ -1,0 +1,35 @@
+= Product Capability Audit: Faceting
+:revdate: 2026-09-21
+
+== Boundary verdict
+
+Faceting owns catalog faceting semantics: facet definitions, values, filterability and neutral query/filter contracts. It must not own search execution, catalog master data or rendering.
+
+== Capability matrix
+
+[cols="3,1,4",options="header"]
+|===
+|Capability |Status |Audit
+|Facet identity |PARITY |Product manifesto establishes the domain.
+|Facet values |PARITY |Core faceting requirement.
+|Assignment/reference to catalog resources |PARITY |`FacetValueDTO.externalReference` carries an opaque catalog-owned reference without duplicating catalog truth.
+|Filterable/searchable flags |PARITY |`FacetDefinitionDTO` declares filterable/searchable eligibility without executing search/index work.
+|Multi-select facets |PARITY |`FacetFilterDTO` carries stable value identifiers with explicit `Any`/`All` composition semantics.
+|Range facets |PARITY |Separate numeric and immutable date range contracts validate open/closed bounds without backend execution.
+|Hierarchical facets |PARTIAL |Only where distinct from Cataloging taxonomy.
+|Facet counts/aggregation contract |PARITY |Neutral aggregation request/result/bucket contracts carry stable value identifiers and backend-computed counts.
+|Localized labels |PARITY |`FacetLocalizedLabelDTO` normalizes language/region tags and labels while rendering remains external.
+|Ordering/display metadata |PARITY |Facet/value/count contracts expose deterministic non-negative `position`; rendering stays elsewhere.
+|===
+
+== Boundary risks
+
+* Objecting lifecycle fields are consumed through the canonical audit pack; no local audit-field duplication remains.
+* Searching executes queries; Indexing builds index structures; Faceting defines filter semantics.
+
+== Milestone direction
+
+M1: COMPLETE -- canonical facet/value/filter contracts with stable identifiers and explicit eligibility semantics.
+M2: COMPLETE -- multi-select `Any`/`All`, numeric/date ranges, localization and neutral ordering metadata.
+M3: CONTRACT COMPLETE -- neutral aggregation/count exchange is implemented; consumer-side acceptance remains in Indexing/Searching and storefront owners.
+
