@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Faceting\Service\Demo;
 
-use App\Faceting\Entity\Facet;
+use App\Faceting\Entity\FacetEntity;
 use App\Faceting\RepositoryInterface\FacetRepositoryInterface;
 use App\Faceting\ServiceInterface\Demo\FacetDemoDatasetServiceInterface;
 use App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface;
@@ -34,7 +34,7 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
 
         $count = 0;
         foreach ($this->facetingDemoDatasetService->buildDataset()->items as $row) {
-            $this->facetRepository->save(new Facet(
+            $this->facetRepository->save(new FacetEntity(
                 new FacetCode($row->code),
                 new FacetName($row->nameEntity),
                 $row->type,

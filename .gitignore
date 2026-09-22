@@ -1,6 +1,8 @@
 /vendor/
 /var/
+/.gating/
 /node_modules/
+/test-results/
 /.phpunit.cache/
 .env.local
 .env.test.local

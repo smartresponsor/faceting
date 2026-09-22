@@ -9,4 +9,4 @@ parameters:
     ignoreErrors:
         -
             identifier: property.unusedType
-            path: src/Entity/Facet.php
+            path: src/Entity/FacetEntity.php

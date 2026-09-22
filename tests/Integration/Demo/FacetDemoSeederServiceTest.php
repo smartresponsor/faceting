@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Faceting\Tests\Integration\Demo;
 
-use App\Faceting\Entity\Facet;
+use App\Faceting\Entity\FacetEntity;
 use App\Faceting\Enum\FacetType;
 use App\Faceting\Repository\FacetRepository;
 use App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface;
@@ -27,7 +27,7 @@ final class FacetDemoSeederServiceTest extends KernelTestCase
         self::assertInstanceOf(EntityManagerInterface::class, $entityManager);
         $this->entityManager = $entityManager;
 
-        $metadata = [$this->entityManager->getClassMetadata(Facet::class)];
+        $metadata = [$this->entityManager->getClassMetadata(FacetEntity::class)];
         $schemaTool = new SchemaTool($this->entityManager);
         $schemaTool->dropSchema($metadata);
         $schemaTool->createSchema($metadata);
@@ -52,7 +52,7 @@ final class FacetDemoSeederServiceTest extends KernelTestCase
         $repository = static::getContainer()->get(FacetRepository::class);
         self::assertInstanceOf(FacetRepository::class, $repository);
 
-        $facet = new Facet(
+        $facet = new FacetEntity(
             new FacetCode('integration'),
             new FacetName('Integration'),
             FacetType::Term,

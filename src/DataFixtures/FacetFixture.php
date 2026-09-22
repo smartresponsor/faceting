@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Faceting\DataFixtures;
 
-use App\Faceting\Entity\Facet;
+use App\Faceting\Entity\FacetEntity;
 use App\Faceting\ServiceInterface\Demo\FacetDemoDatasetServiceInterface;
 use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use App\Faceting\ValueObject\Definition\Facet\FacetName;
@@ -21,7 +21,7 @@ final class FacetFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         foreach ($this->facetingDemoDatasetService->buildDataset()->items as $row) {
-            $manager->persist(new Facet(
+            $manager->persist(new FacetEntity(
                 new FacetCode($row->code),
                 new FacetName($row->nameEntity),
                 $row->type,
