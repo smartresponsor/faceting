@@ -304,4 +304,17 @@ Implement M1 canonical facet/value/filter contracts with stable identifiers and 
 Что имеем? The Faceting-owned table-prefix repair passes the affected test suites and gate rule.
 Что осталось? Retire the exact embedded Gating files after provenance and deletion inventory; rerun Gating to close Canon052, then verify local database migration/rebuild strategy before production deployment.
 
+### Canon052 closure and current acceptance
+
+- Corrected inventory: Git tracked only `.gating/README.md` (with a pre-existing local edit). The executable nested copy consisted of 379 ignored files. The earlier description of tracked executable files was inaccurate.
+- Moved the entire legacy `.gating/` tree into ignored `var/facet-gating-legacy-backup/` as a reversible backup. Adapted the edited README into `docs/component/faceting-gating-integration.md`; no sibling repository was changed.
+- Fresh `test:coverage` PASS: 67 tests / 187 assertions; 93.1% lines, 88.6% methods, 93.4% branches.
+- Fresh `test:behavioral-coverage` PASS: 3 integration, 4 functional, 2 real-browser Playwright cases; functional/behavioral/UI/critical evidence all at 100%.
+- Final Gating PASS: 70 rules, 0 failures, 0 warnings, 0 suppressed, 7 skips. Canon040, Canon042, Canon052, and table-prefix enforcement all pass. Full Symfony pipeline, PHPStan level 8, PHP-CS-Fixer check and Doctrine mapping validation pass.
+- Database sync validation is not part of the configured schema command (`--skip-sync`). The entity-first table rename therefore still needs an explicit deployment data strategy if a persistent production database has the retired `facet` table.
+
+Что имеем? Current RC gates are green, the previously edited README content has a Faceting-owned home, and the legacy copy remains recoverable under ignored `var/`.
+Что осталось? Commit the integration documentation/journal and inspect final Git branch/upstream state. Production database transition is a deployment decision if old persistent data exists.
+
+
 
