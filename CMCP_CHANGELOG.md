@@ -317,4 +317,3 @@ Implement M1 canonical facet/value/filter contracts with stable identifiers and 
 Что осталось? Commit the integration documentation/journal and inspect final Git branch/upstream state. Production database transition is a deployment decision if old persistent data exists.
 
 
-
