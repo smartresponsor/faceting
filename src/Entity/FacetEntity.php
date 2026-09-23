@@ -12,9 +12,9 @@ use App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'facet')]
-#[ORM\UniqueConstraint(name: 'uniq_facet_code', columns: ['code'])]
-#[ORM\Index(name: 'idx_facet_visible_position', columns: ['visible', 'position'])]
+#[ORM\Table(name: 'facet_definition')]
+#[ORM\UniqueConstraint(name: 'uniq_facet_definition_code', columns: ['code'])]
+#[ORM\Index(name: 'idx_facet_definition_visible_position', columns: ['visible', 'position'])]
 /**
  * Represents the persistent facet definition together with its canonical audit lifecycle state.
  */

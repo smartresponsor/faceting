@@ -2,7 +2,7 @@
 
 ## Decision
 
-Faceting no longer treats Doctrine migrations as the owner of the `facet` schema. The Doctrine entity is the schema source for this component.
+Faceting no longer treats Doctrine migrations as the owner of the facet definition schema. The Doctrine entity is the schema source for this component.
 
 ## Retired schema-first sources
 
@@ -10,12 +10,12 @@ Faceting no longer treats Doctrine migrations as the owner of the `facet` schema
 
 ## Entity-first coverage
 
-The retired migration table `facet` is covered by `App\Faceting\Entity\Facet`.
+The retired migration table `facet` is superseded by the entity-first `facet_definition` table mapped by `App\Faceting\Entity\FacetEntity`.
 
 Migration metadata moved into Doctrine attributes:
 
-- `uniq_facet_code` on `facet.code`
-- `idx_facet_visible_position` on `facet.visible, facet.position`
+- `uniq_facet_definition_code` on `facet_definition.code`
+- `idx_facet_definition_visible_position` on `facet_definition.visible, facet_definition.position`
 - explicit `type` length `32`
 
 ## Repository contract

@@ -287,3 +287,21 @@ Implement M1 canonical facet/value/filter contracts with stable identifiers and 
 
 Что имеем? Faceting-owned M1/M2 and M3 contract work is production-implemented and all local deterministic/behavioral gates are green.
 Что осталось? Consumer/storefront adoption and acceptance must be implemented in Searching/Indexing/Cataloging/Retailing because those repositories currently have no Faceting dependency; preserve that cross-repository tail rather than duplicating it locally.
+
+## 2026-09-23 — Physical table prefix acceptance
+
+- Baseline: `hardening/faceting-canon040-acceptance` at `fe769e2`, aligned with upstream; pre-existing `.gating/README.md` edit preserved. Read root instructions, Composer manifests, Facet Entity and schema note, helper contracts, Canonization Canon040/Canon042 and Gating output.
+- Target mapping: Faceting `App\\Faceting\\` and `Facet*` naming pass; direct Objecting, Cruding, Viewing, Interfacing, Collectioning and Tabling declarations and local symlink closure pass. Canon040/042 evidence is green. Gating's database prefix rule requires `facet_` for the mapped table; consumer `.gating/` must contain artifacts only.
+- Selected RC repair: map `FacetEntity` to `facet_definition` and update its entity-first schema note. Risk: existing local databases built from the old `facet` table need deliberate rebuild or data migration; no destructive database operation is performed here.
+- Remaining separate RC debt: tracked executable Gating copy under `.gating/` currently fails Canon052; identify exact tracked paths and retire them without touching the pre-existing README edit. Run final gates after isolated removal.
+- Growth: disjunctive counts, bucket limits/search and backend-specific execution remain outside this RC repair.
+
+Что имеем? Symfony pipeline, PHPStan and strict Composer validate pass at baseline; two Gating failures are identified, with the table mapping corrected.
+Что осталось? Verify the mapping change and remove the tracked embedded Gating copy safely, then repeat Gating and integration checks.
+- Follow-up: renamed physical unique/index names to `uniq_facet_definition_code` and `idx_facet_definition_visible_position` after the initial integration run exposed SQLite's global index-name collision with the retired table.
+- Verification after repair: all 60 unit, 3 integration and 4 functional tests pass; Doctrine mapping validation passes (database synchronization intentionally skipped). Gating database.table_prefix passes; Canon052 alone remains failed due to the pre-existing embedded executable copy under `.gating/`. Existing `.gating/README.md` edit remains untouched by this task.
+
+Что имеем? The Faceting-owned table-prefix repair passes the affected test suites and gate rule.
+Что осталось? Retire the exact embedded Gating files after provenance and deletion inventory; rerun Gating to close Canon052, then verify local database migration/rebuild strategy before production deployment.
+
+
