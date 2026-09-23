@@ -22,23 +22,27 @@
     "symfony/twig-bundle": "^8.1",
     "symfony/validator": "^8.1",
     "symfony/yaml": "^8.1",
-    "cruding/crud": "*@dev",
+    "collectioning/collection": "dev-master",
+    "cruding/crud": "dev-master",
     "easycorp/easyadmin-bundle": "^5.5",
-    "interfacing/interface": "*@dev",
-    "objecting/object": "*@dev",
-    "viewing/view": "*@dev"
+    "interfacing/interface": "dev-master",
+    "objecting/object": "dev-master",
+    "tabling/table": "dev-master",
+    "viewing/view": "dev-master"
   },
   "require-dev": {
     "doctrine/doctrine-fixtures-bundle": "^4.3",
     "fakerphp/faker": "^1.24",
     "friendsofphp/php-cs-fixer": "^3.95.4",
-    "gating/gate": "*@dev",
+    "gating/gate": "dev-master",
     "phpstan/phpstan": "^2.2",
-    "phpunit/phpunit": "^10.5",
+    "phpunit/phpunit": "^12.0",
     "symfony/browser-kit": "^8.1",
     "symfony/css-selector": "^8.1",
     "symfony/dom-crawler": "^8.1",
-    "symfony/phpunit-bridge": "^8.1"
+    "symfony/panther": "^2.2",
+    "symfony/phpunit-bridge": "^8.1",
+    "symfony/test-pack": "^1.2"
   },
   "autoload": {
     "psr-4": {
@@ -62,17 +66,22 @@
     "cs:check": "php-cs-fixer fix --dry-run --diff --verbose",
     "cs:fix": "php-cs-fixer fix --verbose",
     "phpstan": "phpstan analyse src tests --level=8 --memory-limit=1G",
-    "gating": "gating check --target=. --profile=manifest/faceting.gating-profile.yaml --policy-root=vendor/gating/gate/.gating",
+    "gating": "gating check --target=. --profile=config/facet_gating_profile.yaml --policy-root=vendor/gating/gate/.gating --severity-config=vendor/gating/gate/.gating/config/severity.yaml",
     "validate:prod": "php -r \"json_decode(file_get_contents('composer.prod.json'), true, 512, JSON_THROW_ON_ERROR);\"",
     "doctrine:schema:validate": "php bin/console doctrine:schema:validate --skip-sync",
     "doctrine:migrations:currentness": "php bin/console doctrine:migrations:up-to-date --no-interaction",
     "test:unit": "phpunit --testsuite unit",
     "test:integration": "phpunit --testsuite integration",
     "test:functional": "phpunit --testsuite functional",
-    "test:coverage": [
-      "php -r \"is_dir('var/coverage') || mkdir('var/coverage', 0777, true);\"",
-      "php -d xdebug.mode=coverage vendor/bin/phpunit --path-coverage --coverage-text=var/coverage/summary.txt"
+    "test:ui": "npm run test:ui",
+    "test:behavioral-coverage": [
+      "@test:integration",
+      "@test:functional",
+      "@test:ui",
+      "php tools/coverage/facet-behavioral-ui-coverage.php"
     ],
+    "test:coverage": "@php tools/coverage/facet-php-coverage.php --coverage-text=var/coverage/summary.txt",
+    "test:coverage:path": "@php -d xdebug.mode=coverage vendor/bin/phpunit --coverage-text=var/coverage/phpunit-path.txt --path-coverage",
     "test": [
       "@test:unit",
       "@test:integration",
@@ -84,6 +93,13 @@
       "@lint:twig",
       "@lint:container",
       "@test"
+    ],
+    "gate": "@php vendor/bin/gating check --target=. --profile=config/facet_gating_profile.yaml --policy-root=vendor/gating/gate/.gating --severity-config=vendor/gating/gate/.gating/config/severity.yaml",
+    "quality": [
+      "@cs:check",
+      "@phpstan",
+      "@test",
+      "@gate"
     ]
   },
   "config": {
@@ -91,42 +107,78 @@
       "symfony/runtime": true
     }
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "repositories": [
     {
       "type": "path",
       "url": "../Gating",
       "options": {
-        "symlink": true
+        "symlink": true,
+        "versions": {
+          "gating/gate": "dev-master"
+        }
       }
     },
     {
       "type": "path",
       "url": "../Cruding",
       "options": {
-        "symlink": true
+        "symlink": true,
+        "versions": {
+          "cruding/crud": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Collectioning",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "collectioning/collection": "dev-master"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "../Tabling",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "tabling/table": "dev-master"
+        }
       }
     },
     {
       "type": "path",
       "url": "../Viewing",
       "options": {
-        "symlink": true
+        "symlink": true,
+        "versions": {
+          "viewing/view": "dev-master"
+        }
       }
     },
     {
       "type": "path",
       "url": "../Objecting",
       "options": {
-        "symlink": true
+        "symlink": true,
+        "versions": {
+          "objecting/object": "dev-master"
+        }
       }
     },
     {
       "type": "path",
       "url": "../Interfacing",
       "options": {
-        "symlink": true
+        "symlink": true,
+        "versions": {
+          "interfacing/interface": "dev-master"
+        }
       }
     }
   ]
 }
-

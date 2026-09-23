@@ -6,7 +6,7 @@ namespace App\Faceting\Tests\Unit\Service\Management\Facet;
 
 use App\Faceting\DTO\Demo\FacetDemoDatasetDTO;
 use App\Faceting\DTO\Management\Facet\FacetUpsertDTO;
-use App\Faceting\Entity\Facet;
+use App\Faceting\Entity\FacetEntity;
 use App\Faceting\Enum\FacetType;
 use App\Faceting\Repository\FacetRepository;
 use App\Faceting\Service\Management\Facet\FacetService;
@@ -60,7 +60,7 @@ final class FacetServiceTest extends TestCase
 
             public function findOrderedVisibleFacets(): array
             {
-                return [new Facet(
+                return [new FacetEntity(
                     new FacetCode('persisted'),
                     new FacetName('Persisted'),
                     FacetType::Range,

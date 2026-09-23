@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Faceting\Tests\Unit\Entity;
 
-use App\Faceting\Entity\Facet;
+use App\Faceting\Entity\FacetEntity;
 use App\Faceting\Enum\FacetType;
 use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use App\Faceting\ValueObject\Definition\Facet\FacetName;
@@ -14,7 +14,7 @@ final class FacetTest extends TestCase
 {
     public function testFacetExposesAndMutatesItsBusinessState(): void
     {
-        $facet = new Facet(
+        $facet = new FacetEntity(
             new FacetCode('brand'),
             new FacetName('Brand'),
             FacetType::Term,

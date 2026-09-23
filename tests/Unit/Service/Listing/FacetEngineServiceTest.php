@@ -52,6 +52,37 @@ final class FacetEngineServiceTest extends TestCase
         self::assertSame(1, $result->aggregations->visibility[0]->count);
     }
 
+    public function testResolveFiltersBySearchAcrossCodeAndName(): void
+    {
+        $facetService = new class implements FacetServiceInterface {
+            public function listDemoFacets(): FacetCollectionDTO
+            {
+                return new FacetCollectionDTO([
+                    new FacetItemDTO('brand-code', 'Manufacturer', 'term', true),
+                    new FacetItemDTO('maker', 'Brand Name', 'term', true),
+                    new FacetItemDTO('price', 'Price', 'range', true),
+                ]);
+            }
+
+            public function materialize(FacetUpsertDTO $request): FacetItemDTO
+            {
+                return new FacetItemDTO('test', 'Test', 'term', true);
+            }
+        };
+
+        $service = new FacetEngineService($facetService);
+
+        $criteria = new FacetListingCriteriaDTO();
+        $criteria->search = 'brand';
+
+        $result = $service->resolve($criteria);
+
+        self::assertSame(2, $result->total);
+        self::assertSame(['brand-code', 'maker'], array_column($result->items, 'code'));
+        self::assertSame('term', $result->aggregations->types[0]->key);
+        self::assertSame(2, $result->aggregations->types[0]->count);
+    }
+
     public function testResolveOrdersEqualCountAggregationBucketsByKey(): void
     {
         $facetService = new class implements FacetServiceInterface {

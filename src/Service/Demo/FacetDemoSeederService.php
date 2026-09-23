@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Faceting\Service\Demo;
 
-use App\Faceting\Entity\Facet;
-use App\Faceting\Repository\FacetRepository;
+use App\Faceting\Entity\FacetEntity;
+use App\Faceting\RepositoryInterface\FacetRepositoryInterface;
 use App\Faceting\ServiceInterface\Demo\FacetDemoDatasetServiceInterface;
 use App\Faceting\ServiceInterface\Demo\FacetDemoSeederServiceInterface;
 use App\Faceting\ValueObject\Definition\Facet\FacetCode;
 use App\Faceting\ValueObject\Definition\Facet\FacetName;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Owns replacement and cleanup of persisted Faceting demonstration data for local runtime use.
@@ -21,9 +20,8 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
      * Initializes demo persistence with Doctrine, dataset, and facet repository collaborators.
      */
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
         private readonly FacetDemoDatasetServiceInterface $facetingDemoDatasetService,
-        private readonly FacetRepository $facetRepository,
+        private readonly FacetRepositoryInterface $facetRepository,
     ) {
     }
 
@@ -36,7 +34,7 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
 
         $count = 0;
         foreach ($this->facetingDemoDatasetService->buildDataset()->items as $row) {
-            $this->facetRepository->save(new Facet(
+            $this->facetRepository->save(new FacetEntity(
                 new FacetCode($row->code),
                 new FacetName($row->nameEntity),
                 $row->type,
@@ -46,7 +44,7 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
             ++$count;
         }
 
-        $this->entityManager->flush();
+        $this->facetRepository->flush();
 
         return $count;
     }
@@ -57,13 +55,12 @@ final class FacetDemoSeederService implements FacetDemoSeederServiceInterface
     public function clearAll(): int
     {
         $count = 0;
-        foreach ($this->facetRepository->findAll() as $facet) {
+        foreach ($this->facetRepository->findAllFacets() as $facet) {
             $this->facetRepository->remove($facet);
             ++$count;
         }
 
-        $this->entityManager->flush();
-        $this->entityManager->clear();
+        $this->facetRepository->flush(clear: true);
 
         return $count;
     }
