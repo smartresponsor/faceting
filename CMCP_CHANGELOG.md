@@ -316,4 +316,53 @@ Implement M1 canonical facet/value/filter contracts with stable identifiers and 
 Что имеем? Current RC gates are green, the previously edited README content has a Faceting-owned home, and the legacy copy remains recoverable under ignored `var/`.
 Что осталось? Commit the integration documentation/journal and inspect final Git branch/upstream state. Production database transition is a deployment decision if old persistent data exists.
 
+## 2026-09-24 — RC revalidation and Canon052 recovery
+
+### Reconnaissance and baseline
+
+- Execution plane: Console MCP, workspace `D:\\PhpstormProjects\\www\\Faceting`; sibling repositories are read-only contract sources.
+- Branch baseline: `master`. Initial worktree status contained only pre-existing/parallel licensing changes: modified `composer.json` plus untracked `LICENSE` and `NOTICE`. Those files are preserved and excluded from this Faceting RC wave unless independently required.
+- Read target contracts: `AGENTS.md`, `README.md`, `composer.json`, `CMCP_CHANGELOG.md`, `.gitignore`, bundle/kernel wiring and Faceting Gating integration documentation.
+- Mandatory dependency contour checked: Objecting, Cruding, Viewing and Interfacing root agent/readme/composer contracts; current Faceting Composer manifest declares Objecting, Cruding, Collectioning, Tabling, Viewing and Interfacing directly and registers their bundle surfaces where required.
+- Canonization consulted as normative text: `CANONICAL_RULES_JOURNAL.md`, `GUARD_MATRIX.md`, Canon018, Canon022, Canon038, Canon040, Canon042, Canon052, Canon053 and Canon054. Gating was read as executable enforcement companion.
+- Target-to-canon mapping: `faceting/facet` => `App\\Faceting\\` + `Facet*`; component YAML uses `facet_` where component-owned; standalone baseline dependencies remain direct; consumer `.gating/` is artifact-only; sibling symlinks stay within the Canon053 closed exception contour; Doctrine physical identifiers remain deterministic lower_snake_case with Objecting-owned identity metadata.
+- Market baseline rechecked against Elastic, Algolia and Meilisearch: mature faceting requires counted buckets/distributions, stable filter/facet vocabulary, multi-value filtering, ranges and facet-value search/limits. Backend query execution remains outside Faceting ownership.
+
+### Selected RC-critical workstream
+
+Remove the re-materialized ignored executable Gating copy from consumer `.gating/`, refresh Canon040/Canon042 evidence, run the complete Faceting acceptance surface, and integrate only Faceting-owned journal/docs changes while preserving the unrelated licensing wave.
+
+### Growth track (non-blocking)
+
+- Disjunctive/alternative facet counts under active filters.
+- Explicit facet-value limits/search semantics.
+- Backend-specific aggregation execution strategies owned by Searching/Indexing integrations, not Faceting.
+
+### Current repair
+
+- Live Gating baseline: 70 rules, 1 failure, 2 warnings. Canon052 failed because a full executable Gating tree had reappeared under ignored `.gating/`; Canon040 and Canon042 evidence were stale.
+- Verified `.gating/` is ignored by Faceting and its contents are the Gating engine/policy copy, not consumer artifact state.
+- Moved the directory reversibly to ignored `var/facet-gating-legacy-backup-20260924/`.
+- Immediate Gating rerun: 70 rules, 0 failures, 2 warnings, 7 skipped. Canon052 passes; only stale Canon040/Canon042 evidence remains.
+
+Что имеем? Hard architectural compliance is green again, including Canon052/053/054.
+Что осталось? Refresh executable and behavioral/UI coverage, run full Symfony/static/Doctrine/Composer/security acceptance, update this journal with factual results, then inspect Git status/diff and integrate only the Faceting-owned change set.
+
+### Final acceptance
+
+- Canon040 evidence refreshed successfully: 67 tests / 187 assertions; 93.10% lines, 88.61% methods and 93.43% branches.
+- Canon042 evidence refreshed successfully. Final Gating reports functional 2/2, behavioral 2/2, UI 2/2 and critical 1/1, all at 100%.
+- Final Gating PASS: 70 rules, 0 failures, 0 warnings, 0 suppressed, 7 skipped.
+- Full Symfony pipeline PASS: PHP/YAML/Twig/container lint; 60 unit tests / 145 assertions; 3 integration tests / 15 assertions; 4 functional tests / 27 assertions.
+- PHP-CS-Fixer initially exposed repository checkout line-ending/comment-alignment drift. Repository-owned `cs:fix` normalized the working copy; `cs:check` then passed with 0/85 fixable files. Staging those normalization-only paths produced an empty cached diff and cleared the false-positive Git status entries; no source/test content from that normalization is included in the RC commit.
+- PHPStan level 8 PASS with no errors.
+- Composer strict/check-lock validation PASS; Composer audit reports no security advisories.
+- Doctrine mapping validation PASS; database synchronization is deliberately skipped by the configured command. Migration currentness PASS: no migrations to execute.
+- Production Composer manifest validation PASS.
+- Mandatory memory/architecture graph resolution was attempted through Console MCP, but both graph scope and graph plan calls failed internally. No graph state is claimed or mutated from this run.
+- Git normalization completed safely: after refreshing the fixer-touched paths, the only remaining non-journal changes are the pre-existing licensing wave (`composer.json`, `LICENSE`, `NOTICE`), which remains excluded from this RC commit.
+
+Что имеем? Faceting local RC acceptance is green across architecture, runtime, tests, coverage, static analysis, persistence metadata, dependency integrity and security; the Canon052 regression is repaired reversibly.
+Что осталось? Commit and push only this Faceting execution journal, then verify final HEAD/upstream state while preserving the unrelated licensing wave.
+
 
