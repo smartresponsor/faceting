@@ -365,4 +365,49 @@ Remove the re-materialized ignored executable Gating copy from consumer `.gating
 Что имеем? Faceting local RC acceptance is green across architecture, runtime, tests, coverage, static analysis, persistence metadata, dependency integrity and security; the Canon052 regression is repaired reversibly.
 Что осталось? Commit and push only this Faceting execution journal, then verify final HEAD/upstream state while preserving the unrelated licensing wave.
 
+## 2026-09-25 — Canon055 platform/consumer identity convergence
+
+### Reconnaissance and baseline
+
+- Execution plane: Console MCP against `D:\\PhpstormProjects\\www\\Faceting`; target write boundary remains Faceting only.
+- Branch baseline: `master` at `e3ef39c8505448385b10a116ca9ce433bbc8bd69`, aligned with `origin/master`.
+- Pre-existing/parallel changes preserved and excluded from this RC wave: `composer.json` license metadata plus untracked `LICENSE` and `NOTICE`.
+- Read target contracts and prior journal; verified mandatory Objecting, Cruding, Viewing, Interfacing, Gating, and Canonization contours.
+- Canonization textual rule consulted: `Canon055PlatformIdentityTerminologyRule.md`, its rules journal entry, and guard matrix; Gating mirror `Canon055PlatformIdentityTerminologyRule.php` was inspected.
+- Target-to-canon mapping: `Smart Responder`, `Smart Responsor`, and `SmartResponsor` are consumer/domain aliases only. Shared Faceting agent guidance must use neutral platform terminology. Machine identifiers remain exempt.
+- Market baseline rechecked against Elastic, Algolia, and Meilisearch: counted buckets/distributions, stable facets/values, multi-select/range filtering, and facet-value search/ordering/limits remain mature expectations. Query/index execution stays outside Faceting ownership.
+
+### Selected RC-critical workstream
+
+Close the newly materialized Canon055 hard failure in Faceting-owned current documentation without touching unrelated licensing work, then rerun deterministic acceptance and integrate only the Faceting-owned change set.
+
+### Growth track (non-blocking)
+
+- Disjunctive/alternative facet counts under active filters.
+- Explicit facet-value search/limit semantics across consumer integrations.
+- Backend execution/adapters remain owned by Searching/Indexing, not Faceting.
+
+### Current repair
+
+- Baseline Gating: 9 rules, 1 failure, 0 warnings. The sole failure was Canon055 at `AGENTS.md:3`.
+- Replaced the umbrella heading `SmartResponsor Platform Rules` with neutral `Multi-domain SaaS Platform Rules`; no runtime or API contract changed.
+
+Что имеем? Canon055 has a precise Faceting-owned textual repair and unrelated licensing work remains preserved.
+Что осталось? Rerun Gating and the complete configured acceptance surface, then commit/push only AGENTS.md and CMCP_CHANGELOG.md after final status/diff inspection.
+
+### Final acceptance
+
+- Gating PASS after repair: 9 rules, 0 failures, 0 warnings, 0 suppressed, 0 skipped; Canon055 is green.
+- Full Symfony pipeline PASS: PHP syntax, YAML, Twig and container lint; 60 unit tests / 145 assertions; 3 integration tests / 15 assertions; 4 functional tests / 27 assertions.
+- PHPStan level 8 PASS; PHP-CS-Fixer dry-run PASS with 0/85 fixable files.
+- Doctrine mapping validation PASS; synchronization intentionally skipped by the configured command. Migration currentness PASS with no migrations to execute.
+- Production Composer manifest JSON validation PASS.
+- Composer strict/check-lock validation PASS; Composer audit reports no security advisories.
+- Fresh PHP executable coverage PASS: 67 tests / 187 assertions; 93.10% lines, 88.61% methods, 93.43% branches.
+- No browser/mobile/UI/user-flow source changed in this workstream; behavioral/browser/visual evidence is not applicable to this documentation-only Canon055 repair.
+- The unrelated licensing wave remains excluded: modified `composer.json` plus untracked `LICENSE` and `NOTICE`.
+
+Что имеем? Canon055 convergence is implemented and the complete applicable Faceting acceptance surface is green.
+Что осталось? Create a signed commit containing only `AGENTS.md` and `CMCP_CHANGELOG.md`, push the current branch, then verify final HEAD/upstream/worktree state while preserving the unrelated licensing wave.
+
 
