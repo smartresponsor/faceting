@@ -410,4 +410,16 @@ Close the newly materialized Canon055 hard failure in Faceting-owned current doc
 Что имеем? Canon055 convergence is implemented and the complete applicable Faceting acceptance surface is green.
 Что осталось? Create a signed commit containing only `AGENTS.md` and `CMCP_CHANGELOG.md`, push the current branch, then verify final HEAD/upstream/worktree state while preserving the unrelated licensing wave.
 
+### Licensing wave completion
+
+- Reviewed the remaining dirty worktree as a single coherent repository licensing-policy change rather than unrelated residue.
+- `composer.json` and `composer.prod.json` now both declare `PolyForm-Noncommercial-1.0.0`.
+- `LICENSE` contains the PolyForm Noncommercial License 1.0.0 terms.
+- `NOTICE` carries the required copyright notice and commercial-use clarification.
+- Acceptance for this wave is green: Gating passes 9/9 with zero warnings; `quality` passes PHP-CS-Fixer, PHPStan level 8, 60 unit / 3 integration / 4 functional tests, and Gating; production manifest validation, strict Composer validation/check-lock, and Composer audit all pass.
+- No UI/runtime behavior changed, so browser/visual evidence is not applicable to this licensing-only wave.
+
+Что имеем? The previously uncommitted licensing values are internally consistent across legal files and both development/production package manifests, with the applicable quality surface green.
+Что осталось? Inspect exact unstaged/staged diffs, create a signed licensing commit, verify a clean worktree, push both accumulated commits, and confirm the branch is synchronized with origin.
+
 

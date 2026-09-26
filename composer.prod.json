@@ -2,7 +2,7 @@
   "name": "faceting/facet",
   "description": "Faceting component for facet definitions, filtering, aggregation, and management workflows.",
   "type": "project",
-  "license": "proprietary",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "require": {
     "php": "^8.4",
     "ext-ctype": "*",
