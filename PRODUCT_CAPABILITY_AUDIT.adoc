@@ -18,6 +18,7 @@ Faceting owns catalog faceting semantics: facet definitions, values, filterabili
 |Range facets |PARITY |Separate numeric and immutable date range contracts validate open/closed bounds without backend execution.
 |Hierarchical facets |PARTIAL |Only where distinct from Cataloging taxonomy.
 |Facet counts/aggregation contract |PARITY |Neutral aggregation request/result/bucket contracts carry stable value identifiers and backend-computed counts.
+|Facet-value search request |PARITY |`FacetAggregationRequestDTO.valueQuery` carries normalized optional facet-value search text while execution remains backend-owned.
 |Localized labels |PARITY |`FacetLocalizedLabelDTO` normalizes language/region tags and labels while rendering remains external.
 |Ordering/display metadata |PARITY |Facet/value/count contracts expose deterministic non-negative `position`; rendering stays elsewhere.
 |===

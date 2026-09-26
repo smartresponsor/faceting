@@ -11,13 +11,23 @@ use App\Faceting\ValueObject\Definition\Facet\FacetCode;
  */
 final readonly class FacetAggregationRequestDTO
 {
+    public ?string $valueQuery;
+
     public function __construct(
         public FacetCode $facetIdentifier,
         public int $limit = 50,
         public bool $includeZeroCounts = false,
+        ?string $valueQuery = null,
     ) {
         if ($limit < 1 || $limit > 1000) {
             throw new \InvalidArgumentException('Facet aggregation limit must be between 1 and 1000.');
         }
+
+        $normalizedValueQuery = null === $valueQuery ? null : trim($valueQuery);
+        if ('' === $normalizedValueQuery) {
+            throw new \InvalidArgumentException('Facet value query must not be empty when provided.');
+        }
+
+        $this->valueQuery = $normalizedValueQuery;
     }
 }

@@ -422,4 +422,36 @@ Close the newly materialized Canon055 hard failure in Faceting-owned current doc
 Что имеем? The previously uncommitted licensing values are internally consistent across legal files and both development/production package manifests, with the applicable quality surface green.
 Что осталось? Inspect exact unstaged/staged diffs, create a signed licensing commit, verify a clean worktree, push both accumulated commits, and confirm the branch is synchronized with origin.
 
+## engine-20260926081910-faceting-0d5631
+
+### Reconnaissance and baseline
+
+- Console MCP workspace confirmed; writes limited to Faceting. Git baseline: clean synchronized master at 34b985370a3eeec7e15d3bba450f208bebd3fe10.
+- Read Faceting contracts, mandatory Objecting/Cruding/Viewing/Interfacing contour, Gating, and normative Canonization rules Canon000/001/003/012/031/040/042/053/055.
+- Canon mapping: Faceting -> Facet*; role-first App\\Faceting tree; explicit DTO; typed boundaries; Objecting lifecycle ownership; Cruding generic CRUD ownership; shared rendering/shell stays in Viewing/Interfacing.
+- Market baseline: facet counts, limits, facet-value search, ranges and alternative counts are mature expectations; search/index execution remains outside Faceting.
+- Baseline gates: Gating PASS 9/9, Composer strict/check-lock PASS. Heavy aggregate quality/coverage was capacity-deferred by shared engine backlog, not a repository failure.
+
+### Selected RC-critical workstream
+
+Add backend-neutral facet-value query transport to the aggregation request, normalize boundary input, add focused tests, and update factual capability documentation.
+
+### Growth track (non-blocking)
+
+Disjunctive counts and hierarchical semantics remain later work; backend execution remains in Searching/Indexing.
+
+Что имеем? Baseline is green and synchronized; the bounded gap is facet-value query transport.
+Что осталось? Implement, verify, commit/push, and inspect final state.
+
+### Implementation and verification
+
+- Added optional normalized `valueQuery` to `FacetAggregationRequestDTO`; null remains the backward-compatible default and whitespace-only values are rejected.
+- Added focused unit coverage for normalization and empty-query rejection; README and product capability audit now describe the neutral transport contract.
+- Verification GREEN: unit 62 tests / 147 assertions; PHPStan level 8 PASS; PHP-CS-Fixer check PASS; Gating PASS 9/9 with 0 warnings; full local Symfony pipeline PASS including unit/integration/functional suites (62 + 3 + 4 tests).
+- No browser/mobile/UI/navigation/form surface changed, so behavioral browser execution and visual screenshots are not applicable to this workstream.
+- Follow-up aggregate quality/Doctrine helper invocations encountered a Console MCP internal execution error after the full pipeline had already passed; no repository failure was reported by those calls.
+
+Что имеем? The bounded facet-value query contract is implemented and all deterministic gates that executed are green.
+Что осталось? Commit the five coherent Faceting-owned files, push master to its configured upstream, and confirm final HEAD/worktree/upstream state.
+
 

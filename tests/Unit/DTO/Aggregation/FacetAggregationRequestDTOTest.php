@@ -19,6 +19,23 @@ final class FacetAggregationRequestDTOTest extends TestCase
         self::assertTrue($request->includeZeroCounts);
     }
 
+    public function testItNormalizesFacetValueQuery(): void
+    {
+        $request = new FacetAggregationRequestDTO(
+            new FacetCode('brand'),
+            valueQuery: '  acme  ',
+        );
+
+        self::assertSame('acme', $request->valueQuery);
+    }
+
+    public function testItRejectsEmptyFacetValueQuery(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        new FacetAggregationRequestDTO(new FacetCode('brand'), valueQuery: '   ');
+    }
+
     public function testItRejectsUnboundedLimit(): void
     {
         $this->expectException(\InvalidArgumentException::class);

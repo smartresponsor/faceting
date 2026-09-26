@@ -29,4 +29,4 @@ Current vertical slice:
 - typed facet eligibility and multi-select `Any`/`All` filter semantics
 - numeric and immutable date range filter contracts with explicit bound inclusivity
 - locale-normalized label and neutral ordering metadata contracts
-- backend-neutral aggregation request/result/count contracts; Searching executes queries and Indexing builds index structures
+- backend-neutral aggregation request/result/count contracts, including normalized facet-value query transport; Searching executes queries and Indexing builds index structures
