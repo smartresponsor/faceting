@@ -13,6 +13,7 @@ return [
     App\Viewing\ViewingBundle::class => ['all' => true],
     App\Interfacing\InterfacingBundle::class => ['all' => true],
     App\Objecting\ObjectBundle::class => ['all' => true],
+    App\Failing\FailingBundle::class => ['all' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
