@@ -27,6 +27,7 @@
     "failing/failure": "dev-master",
     "easycorp/easyadmin-bundle": "^5.5",
     "interfacing/interface": "dev-master",
+    "nelmio/api-doc-bundle": "^5.12",
     "objecting/object": "dev-master",
     "tabling/table": "dev-master",
     "viewing/view": "dev-master"

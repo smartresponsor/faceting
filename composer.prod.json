@@ -27,6 +27,7 @@
     "failing/failure": "*",
     "easycorp/easyadmin-bundle": "^5.5",
     "interfacing/interface": "*",
+    "nelmio/api-doc-bundle": "^5.12",
     "objecting/object": "*",
     "tabling/table": "*",
     "viewing/view": "*"

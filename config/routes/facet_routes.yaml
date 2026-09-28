@@ -5,3 +5,4 @@ faceting_management_index:
 faceting_api_listing:
   path: /api/facet/listing
   controller: App\Faceting\Responder\Api\Listing\FacetListingApiResponder::list
+  methods: [GET]

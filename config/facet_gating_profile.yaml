@@ -11,6 +11,7 @@ component:
   service_interface_mirror: true
   mutation_mode: forbidden
 subject_prefix: Facet
+canonical_openapi_path: config/openapi/facet_openapi.yaml
 typed_boundary_internal_roots:
   - Service
   - Builder

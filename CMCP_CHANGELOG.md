@@ -455,3 +455,28 @@ Disjunctive counts and hierarchical semantics remain later work; backend executi
 Что осталось? Commit the five coherent Faceting-owned files, push master to its configured upstream, and confirm final HEAD/worktree/upstream state.
 
 
+## engine-20260928094830-faceting-6021d6
+
+### Reconnaissance and material remediation
+
+- Baseline: clean synchronized `master` at `8f2a0109a08e4069bb1b08ea3ef607ab43c82c8a`; fresh CanonScanning RED contained Canon052, Canon056 and Canon063 failures.
+- Consulted Canonization Canon052/056/058/059/060/061/062/063 textual rules plus Gating mirrors and the mandatory Objecting/Cruding/Viewing/Interfacing contour.
+- RC-critical repair: moved the ignored embedded `.gating/` engine reversibly to `var/facet-gating-legacy-backup-20260928/`; bounded `/api/facet/listing` to GET; added `config/openapi/facet_openapi.yaml`; declared `canonical_openapi_path`; added/registerd `nelmio/api-doc-bundle`; added a POST=>405 functional assertion.
+- Composer resolved NelmioApiDocBundle v5.12.2 and refreshed the lock file successfully.
+
+### Verification
+
+- `composer validate --strict --check-lock`: PASS.
+- Functional suite: PASS, 5 tests / 28 assertions, including POST=>405 method-boundary coverage.
+- PHPStan level 8: PASS.
+- YAML lint and Symfony container lint: PASS.
+- Production manifest validation: PASS.
+- Aggregate `quality`: PASS; CS fixer green, unit 62/147, integration 3/15, functional 5/28, repository Gating green.
+- Doctrine mapping validation: PASS; database synchronization intentionally skipped by the configured command. Migration currentness: PASS.
+- RC validator: zero canon issues; readiness blocked only by expected uncommitted implementation state before Git integration.
+- Standalone Inspecting post-mutation refresh was attempted twice through Console MCP and both invocations hit the execution-plane timeout; no post-mutation Inspecting result is claimed. Pre-mutation evidence had one medium observational FacetEntity cohesion finding and a Semgrep analyzer timeout.
+- Browser/UI visual evidence is not applicable: the change affects JSON API contract metadata/method handling and repository integration, not a user-observable browser UI flow.
+
+Что имеем? Canon/API remediation is implemented and deterministic repository acceptance is green.
+Что осталось? Commit/push the coherent change set and verify final branch/upstream/worktree; post-mutation Inspecting remains an execution-plane verification tail.
+

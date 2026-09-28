@@ -32,4 +32,12 @@ final class FacetListingApiControllerTest extends WebTestCase
         self::assertSame('visible', $data['aggregations']['visibility'][0]['key']);
         self::assertSame(1, $data['aggregations']['visibility'][0]['count']);
     }
+
+    public function testListingEndpointRejectsUnpublishedMethods(): void
+    {
+        $client = static::createClient();
+        $client->request('POST', '/api/facet/listing');
+
+        self::assertResponseStatusCodeSame(405);
+    }
 }
