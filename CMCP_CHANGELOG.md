@@ -480,3 +480,43 @@ Disjunctive counts and hierarchical semantics remain later work; backend executi
 Что имеем? Canon/API remediation is implemented and deterministic repository acceptance is green.
 Что осталось? Commit/push the coherent change set and verify final branch/upstream/worktree; post-mutation Inspecting remains an execution-plane verification tail.
 
+
+
+## engine-20260930015424-faceting-f2ecdb
+
+### Reconnaissance and baseline
+
+- Execution plane: Console MCP against `D:\PhpstormProjects\www\Faceting`; sibling repositories are read-only contract sources.
+- Git baseline: clean synchronized `master` at `6b4c77d8d092214c105a76f60ebf0296d0cd0654`, tracking `origin/master` with ahead/behind 0/0.
+- Upstream CanonScanning fingerprint: `2b772b3162497e9df2363927244e399d532af5d15322c38b703bfcb40647fc61`.
+- Fresh Inspecting evidence reused: one medium observational FacetEntity low-property-cohesion finding; no actionable Inspecting RED remediation front. Semgrep timed out in that upstream run.
+- Canon RED backlog: one hard failure, `canon.052.gating_integration`, caused by executable/normative Gating content present under consumer-local `.gating/`; Canon040 and Canon042 are stale-evidence warnings.
+- Canonization consulted: `.canonization/Governance/Architecture/Rule/Canon052GatingIntegrationRule.md` and `GUARD_MATRIX.md`. Mapping: Faceting is a canonical App\\ PHP consumer; `.gating/` is artifact-only, while development Gating is provided by the symlinked `../Gating` Composer dependency and aggregate `quality -> @gate`.
+- Gating executable mirror consulted: `src/Rule/Canon/Canon052GatingIntegrationRule.php`; target Composer contract already satisfies dependency, path symlink, gate/quality scripts, and packaged production dependency requirements.
+- Mandatory application dependency contour confirmed in target Composer: Objecting, Cruding, Viewing, and Interfacing are explicit first-party dependencies; generic CRUD remains Cruding-owned and shared rendering/shell remains Viewing/Interfacing-owned.
+- Market/open-source baseline: mature faceting commonly includes counted buckets, facet-value search, configurable limits/sorting, numeric ranges, and alternative/disjunctive counts. These remain a separate growth track and do not justify widening the current canon remediation.
+
+### Selected RC-critical workstream
+
+Reversibly evacuate the non-artifact embedded `.gating/` tree from the consumer artifact surface, run canonical Gating again, refresh stale PHP and behavioral/UI coverage evidence using repository scripts, run deterministic quality gates, then refresh Inspecting after repository mutation.
+
+### Growth track (non-blocking)
+
+Post-RC maturity candidates remain alternative/disjunctive counts, facet-value limits/pagination/sorting, numeric range buckets, and backend-neutral aggregation strategy evolution; Searching/Indexing execution ownership stays outside Faceting.
+
+
+### Remediation and verification
+
+- Reversibly moved consumer-local `.gating/` to ignored `var/facet-gating-legacy-backup-20260929-2054/`; no executable/policy content remains in the canonical consumer artifact surface and no files were deleted.
+- Repository `gate`: PASS, 9 rules, 0 failed, 0 warnings.
+- RC validator: canon issue count 0; validation commands green. Its only readiness blocker before integration is the expected uncommitted journal.
+- PHP-CS-Fixer check: PASS, 0/85 files need fixes.
+- PHPStan level 8: PASS.
+- Test suites: unit 62/147, integration 3/15, functional 5/28: PASS.
+- Composer strict validation with lock check: PASS; production manifest validation: PASS.
+- Symfony YAML/Twig/container lint: PASS. Doctrine mapping validation: PASS; database sync intentionally skipped by repository script. Migration currentness: PASS.
+- Coverage refresh scripts were requested but not started because Console MCP admitted light work only under shared `RESOURCE_PRESSURE_WATCH` + `ENGINE_BACKLOG_HIGH`; this is an orchestration capacity deferral, not a repository test failure.
+- No application source, browser UI, navigation, form, or user flow changed; behavioral browser screenshots are therefore not applicable to this remediation. Existing upstream Inspecting source evidence remains applicable because `src/` was not modified.
+
+Что имеем? Canon052 is remediated, RC canon validation reports zero issues, and every deterministic gate that could run is green.
+Что осталось? Commit and push the journaled remediation checkpoint, then confirm final HEAD/worktree/upstream state.
